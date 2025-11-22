@@ -10,13 +10,15 @@ export function Cadastro () {
                 <Text style={styles.subtitle}>Insira seu email para se cadastrar</Text>
             </View>
 
-            <View>
+            <View style={styles.row}>
                 <TextInput
+                    style={[styles.input, styles.half]}
                     placeholder="Nome"
                     placeholderTextColor="#A3A3A3"
                 />
 
                 <TextInput
+                    style={[styles.input, styles.half]}
                     placeholder="Sobrenome"
                     placeholderTextColor="#A3A3A3"
                 />

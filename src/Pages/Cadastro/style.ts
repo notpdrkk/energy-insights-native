@@ -22,11 +22,30 @@ export const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontWeight: "700",
-        color: "#000",
+        color: "#1EB980",
     },
     subtitle: {
         marginTop: 5,
         fontSize: 14,
         color: "#777",
     },
+    row: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+    },
+    half: {
+        width: "48%",
+    },
+    
+    input: {
+        width: "100%",
+        height: 50,
+        borderWidth: 1,
+        borderColor: "#DADADA",
+        borderRadius: 8,
+        paddingHorizontal: 15,
+        fontSize: 16,
+        marginTop: 12,
+    },
+
 })

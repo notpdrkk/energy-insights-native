@@ -23,6 +23,7 @@ export const styles = StyleSheet.create({
         marginTop: 20,
         fontSize: 25,
         fontWeight: "bold",
+        color: "#1EB980",
     },
 
     input: {
