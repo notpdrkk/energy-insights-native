@@ -59,6 +59,17 @@ export const styles = StyleSheet.create({
         color: "#FFF",
         fontSize: 15,
         fontWeight: "600",
-    }
+    },
+    termos: {
+        marginTop: 20,
+        textAlign: "center",
+        fontSize: 12,
+        color: "#555",
+        lineHeight: 18,
+    },
+    link: {
+        color: "#1EB980",
+        fontWeight: "600",
+    },
 
 })

@@ -3,6 +3,7 @@ import { styles } from "./style";
 
 export function Cadastro () {
     return(
+        
         <View style={styles.container}>
             <View style={styles.header}>
                 <Text style={styles.logo}>Energy Electric</Text>
@@ -48,13 +49,10 @@ export function Cadastro () {
                  <Text style={styles.buttonText}>Criar Conta</Text>
             </TouchableOpacity>
 
-            <Text >
-                Já tem conta?
-                <Text 
-                    
-                >
-                    Clique aqui
-                </Text>
+            <Text style={styles.termos}>
+                Ao clicar em continuar, você concorda com os nossos{" "}
+                <Text style={styles.link}>Termos de serviço</Text> e{" "}
+                <Text style={styles.link}>Política de privacidade</Text>.
             </Text>
 
         </View>
