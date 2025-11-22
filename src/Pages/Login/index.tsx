@@ -3,7 +3,7 @@ import { styles } from "./style"
 import { GoogleButton } from "../../Components/GoogleButton";
 import { AppleButton } from "../../Components/AppleButton";
 
-export function Login() {
+export function Login({ navigation }) {
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 
@@ -53,7 +53,7 @@ export function Login() {
           />
       
           <Text style={styles.footerText}>
-            Não tem conta? <Text  style={styles.link}>Clique aqui</Text>
+            Não tem conta? <Text  style={styles.link} onPress={() => navigation.navigate("Cadastro")}>Clique aqui</Text>
           </Text>
       </View>
     </ScrollView>
