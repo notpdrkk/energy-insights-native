@@ -9,7 +9,7 @@ export function Login() {
 
       <View>
         <View>
-          <Text>Energy Eletric</Text>
+          <Text>Energy Electric </Text>
         </View>
        
         <Text>Login</Text>
@@ -36,7 +36,7 @@ export function Login() {
 
             <AppleButton
                 title="Entrar com Apple"
-                icon={require("../../../assets/icone-apple-symbole-logo-noir-removebg-preview.png")}
+                icon={require("../../../assets/icone-apple-symbole-logo-noir-removebg-preview copy.png")}
                 onPress={() => console.log("Entrar com Apple")}
             />
        
