@@ -16,12 +16,12 @@ export const styles = StyleSheet.create({
         marginBottom: 40,
     },
     logo: {
-        fontSize: 24,
+        fontSize: 30,
         fontWeight: "bold",
     },
     title: {
         marginTop: 20,
-        fontSize: 28,
+        fontSize: 25,
         fontWeight: "bold",
     },
 

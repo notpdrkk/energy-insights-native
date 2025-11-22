@@ -5,9 +5,9 @@ export function Cadastro () {
     return(
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text>Energy Electric</Text>
-                <Text>Criar uma conta</Text>
-                <Text>Insira seu email para se cadastrar</Text>
+                <Text style={styles.logo}>Energy Electric</Text>
+                <Text style={styles.title}>Criar uma conta</Text>
+                <Text style={styles.subtitle}>Insira seu email para se cadastrar</Text>
             </View>
 
             <View>
