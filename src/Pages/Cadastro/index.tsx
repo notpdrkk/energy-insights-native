@@ -25,24 +25,27 @@ export function Cadastro () {
             </View>
 
             <TextInput
+                style={styles.input}
                 placeholder="email@dominio.com"
                 placeholderTextColor="#A3A3A3"
                 keyboardType="email-address"
             />
             <TextInput
+                style={styles.input}
                 placeholder="Senha"
                 placeholderTextColor="#A3A3A3"
                 secureTextEntry
             />
 
             <TextInput
+                style={styles.input}
                 placeholder="Confirmar senha"
                 placeholderTextColor="#A3A3A3"
                 secureTextEntry
             />
 
-            <TouchableOpacity>
-                 <Text>Criar Conta</Text>
+            <TouchableOpacity style={styles.button}>
+                 <Text style={styles.buttonText}>Criar Conta</Text>
             </TouchableOpacity>
 
             <Text >
