@@ -18,10 +18,18 @@ export function Login() {
           <TextInput 
             placeholder="email@dominio.com"
             placeholderTextColor="#999"
+            style={styles.input}
+          />
+          
+          <TextInput 
+            placeholder="••••••••"
+            placeholderTextColor="#999"
+            secureTextEntry={true}
+            style={styles.input}
           />
 
-          <TouchableOpacity>
-           <Text>Continuar</Text>
+          <TouchableOpacity style={styles.button}>
+           <Text style={styles.buttonText}>Continuar</Text>
           </TouchableOpacity>
 
           <View style={styles.OuContainer}>
@@ -44,8 +52,8 @@ export function Login() {
             onPress={() => console.log("Entrar com Apple")}
           />
       
-          <Text>
-            Não tem conta? <Text>Clique aqui</Text>
+          <Text style={styles.footerText}>
+            Não tem conta? <Text  style={styles.link}>Clique aqui</Text>
           </Text>
       </View>
     </ScrollView>

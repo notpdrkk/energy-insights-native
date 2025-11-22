@@ -9,27 +9,54 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 20,
-},
+    },
 
     header: {
-    alignItems: "center",
-    marginBottom: 40,
-},
+        alignItems: "center",
+        marginBottom: 40,
+    },
     logo: {
         fontSize: 24,
         fontWeight: "bold",
-},
+    },
     title: {
         marginTop: 20,
         fontSize: 28,
         fontWeight: "bold",
-},
+    },
+
+    input: {
+        width: "100%",
+        height: 48,
+        borderWidth: 1,
+        borderColor: "#DDD",
+        borderRadius: 8,
+        paddingHorizontal: 12,
+        marginBottom: 20,
+    },
+
+
+
+    button: {
+        width: "100%",
+        height: 48,
+        backgroundColor: "#38C695",
+        borderRadius: 8,
+        justifyContent: "center",
+        alignItems: "center",
+        marginBottom: 25,
+    },
+    buttonText: {
+        color: "#FFF",
+        fontSize: 16,
+        fontWeight: "bold",
+    },
     OuContainer: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "center",
         marginVertical: 20,
-},
+    },
 
     line: {
         flex: 1,
@@ -42,6 +69,14 @@ export const styles = StyleSheet.create({
         fontSize: 14,
         color: "#1f1f1fff",
         fontWeight: "500",
+    },
+    footerText: {
+        marginTop: 20,
+        color: "#777",
+    },
+    link: {
+        color: "#2DAB87",
+        textDecorationLine: "underline",
     },
 
 })
