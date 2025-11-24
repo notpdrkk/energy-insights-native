@@ -38,7 +38,7 @@ export function Integrantes() {
     ];
     return(
         <View style={styles.container}>
-            <Text>Eletro Integrantes</Text>
+            <Text style={styles.header}>Eletro Integrantes</Text>
                 <FlatList
                 data={integrantes}
                 keyExtractor={(item) => item.id }
@@ -47,9 +47,9 @@ export function Integrantes() {
                 showsHorizontalScrollIndicator= {false}
                 renderItem={({ item })=>(
                     <View style={{ width, alignItems: "center" }}>
-                        <Image source={item.foto} />
+                        <Image source={item.foto} style={styles.foto} />
 
-                        <View >
+                        <View style={styles.cardInfo}>
                             <Text >{item.nome}</Text>
                             <Text >{item.funcao}</Text>
                         </View>
