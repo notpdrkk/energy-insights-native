@@ -1,10 +1,36 @@
-import { ScrollView, View, Text, TextInput, TouchableOpacity } from "react-native";
-import { styles } from "./style"
+import React, { useState } from "react";
+import { ScrollView, View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert } from "react-native";
+import { styles } from "./style" 
 import { GoogleButton } from "../../Components/GoogleButton";
 import { AppleButton } from "../../Components/AppleButton";
 
-export function Login({ navigation }) {
+interface LoginProps {
+    navigation: {
+        navigate: (screen: string) => void;
+    };
+}
+export function Login({ navigation }: LoginProps) {
+    const [isLoading, setIsLoading] = useState<boolean>(false); 
+
+    const handleLogin = (): void => {
+        if (isLoading) return;
+
+        setIsLoading(true);
+
+        setTimeout(() => {
+            setIsLoading(false);
+            
+            Alert.alert("Sucesso", "Login concluído!"); 
+            
+
+        }, 3000);
+    };
+
+    const handleNavigateToCadastro = (): void => {
+        navigation.navigate("Cadastro");
+    };
   return (
+    
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
 
       <View style={styles.container} >
@@ -28,14 +54,27 @@ export function Login({ navigation }) {
             style={styles.input}
           />
 
-          <TouchableOpacity style={styles.button}>
-           <Text style={styles.buttonText}>Continuar</Text>
-          </TouchableOpacity>
+          <TouchableOpacity 
+            style={[styles.button, isLoading && styles.buttonDisabled]} 
+            onPress={handleLogin} 
+            disabled={isLoading} 
+          >
+            {isLoading ? (
+                
+                <View style={styles.buttonContent}>
+                    <ActivityIndicator color="#FFF" style={{ marginRight: 8 }} />
+                    <Text style={styles.buttonText}>Entrando...</Text>
+                </View>
+            ) : (
+                
+                <Text style={styles.buttonText}>Continuar</Text>
+            )}
+          </TouchableOpacity>
 
           <View style={styles.OuContainer}>
-            <View style={styles.line} />
+            <View style={styles.line}/>
                 <Text style={styles.OuText}>OU</Text>
-            <View style={styles.line} />
+            <View style={styles.line}/>
           </View>
 
           <GoogleButton

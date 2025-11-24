@@ -52,6 +52,14 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "bold",
     },
+    buttonContent: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    buttonDisabled: {
+        backgroundColor: "#A3A3A3", 
+    },
     OuContainer: {
         flexDirection: "row",
         alignItems: "center",

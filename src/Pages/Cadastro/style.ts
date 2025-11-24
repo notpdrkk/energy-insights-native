@@ -55,6 +55,15 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         marginTop: 20,
     },
+    buttonDisabled: {
+        backgroundColor: "#A3A3A3", 
+    },
+    buttonContent: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    
     buttonText:{
         color: "#FFF",
         fontSize: 15,
