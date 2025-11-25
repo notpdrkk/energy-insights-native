@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
         fontSize: 26,
         fontWeight: "bold",
         marginBottom: 20,
-        color: "#000",
+        color:"#2DAB87",
   },
     foto: {
         width: width * 0.75,      
@@ -30,5 +30,19 @@ export const styles = StyleSheet.create({
         borderRadius: 16,
         marginTop: 30,
         alignItems: "center",
+  },
+    nome: {
+        fontSize: 22,
+        fontWeight: "600",
+        marginBottom: 4,
+        color: "#2DAB87",
+  },
+    funcao: {
+        fontSize: 16,
+        color: "#555",
+  },
+    background: {
+        flex: 1,
+        resizeMode: "cover",
   },
 })

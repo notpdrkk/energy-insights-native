@@ -53,7 +53,10 @@ export function Login({ navigation }) {
           />
       
           <Text style={styles.footerText}>
-            Não tem conta? <Text  style={styles.link} onPress={() => navigation.navigate("Cadastro")}>Clique aqui</Text>
+            Não tem conta? 
+            <TouchableOpacity style={styles.ContainerBotao} onPress={() => navigation.navigate("Cadastro")}>
+              <Text  style={styles.link}>Clique aqui</Text>
+            </TouchableOpacity>
           </Text>
       </View>
     </ScrollView>
