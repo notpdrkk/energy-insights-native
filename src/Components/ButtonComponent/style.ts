@@ -7,17 +7,18 @@ export const styles = StyleSheet.create({
         padding: 16,
     },
 
-    avatar:{
-        width: 100,
-        height: 100,
-        borderRadius: 50,
-        marginBottom: 12,
+    button:{
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        backgroundColor: '#38C695',
+        borderRadius: 5,
     },
 
-    name :{
-        fontSize: 18,
+    title:{
+        fontSize: 16,
         fontWeight: '600',
-        textAlign: 'center',
+        color: '#FFFFFF',
+        
     },
 
 });

@@ -3,6 +3,7 @@ import { Text, View, Alert } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { styles } from "./style";
 import { CardProfile } from "../../Components/CardProfile";
+import { Button } from "../../Components/ButtonComponent";
 
 export const Perfil = () => {
   const [photoUri, setPhotoUri] = useState<string | null>(null);
@@ -48,8 +49,22 @@ export const Perfil = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Perfil</Text>
-
       <CardProfile name={name} image={photoUri} />
+      <Button onPress={abrirGaleria} title="Editar Foto" />
+
+      <View
+        style={{
+          backgroundColor: "gray",
+          padding: 10,
+          borderRadius: 8,
+          marginTop: 20,
+          paddingBottom: "100%",
+        }}
+      >
+        <Text style={{ color: "white", textAlign: "center" }}>
+          Caixa para mostrar os eletrodomésticos do usuário
+        </Text>
+      </View>
     </View>
   );
 };

@@ -4,12 +4,12 @@ import { CardProfileProps } from "./type";
 import { styles } from "./style";
 
 export const CardProfile = ({ name, image }: CardProfileProps) => {
-  const defaultImage = "/assets/profile-default.png";
+  const defaultImage = require("../../../assets/profile-default.png");
 
   return (
     <View style={styles.container}>
       <Image
-        source={{ uri: image || defaultImage}}
+        source={image ? {uri: image} : defaultImage}
         style={styles.avatar}
       />
       <Text style={styles.name}>{name}</Text>
