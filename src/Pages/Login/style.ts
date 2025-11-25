@@ -35,7 +35,6 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 12,
         marginBottom: 20,
     },
-
     button: {
         width: "100%",
         height: 48,
@@ -49,6 +48,14 @@ export const styles = StyleSheet.create({
         color: "#FFF",
         fontSize: 16,
         fontWeight: "bold",
+    },
+    buttonContent: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    buttonDisabled: {
+        backgroundColor: "#A3A3A3", 
     },
     OuContainer: {
         flexDirection: "row",
