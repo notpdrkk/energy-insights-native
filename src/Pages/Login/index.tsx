@@ -29,8 +29,8 @@ export function Login({ navigation }: LoginProps) {
             <View style={styles.container}>
 
                 <View style={styles.header}>
-                    <Text style={styles.logo}>Energy Electric</Text>
-                    <Text style={styles.title}>Login</Text>
+                    <Text style={styles.title}>Energy Electric</Text>
+                    <Text style={styles.subtitle}>Login</Text>
                 </View>
 
                 <TextInput
@@ -81,12 +81,13 @@ export function Login({ navigation }: LoginProps) {
                     onPress={() => console.log("Entrar com Apple")}
                 />
 
-                <Text style={styles.footerText}>
-                    Não tem conta? 
-                    <TouchableOpacity style={styles.ContainerBotao} onPress={() => navigation.navigate("Cadastro")}>
+                <View style={{ flexDirection: "row", marginTop: 20 }}>
+                    <Text style={styles.footerText}>Não tem conta? </Text>
+                    
+                    <TouchableOpacity onPress={() => navigation.navigate("Cadastro")}>
                         <Text style={styles.link}>Clique aqui</Text>
                     </TouchableOpacity>
-                </Text>
+                </View>
             </View>
         </ScrollView>
     );
