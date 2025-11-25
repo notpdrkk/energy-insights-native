@@ -15,11 +15,11 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         marginBottom: 40,
     },
-    logo: {
+    title: {
         fontSize: 30,
         fontWeight: "bold",
     },
-    title: {
+    subtitle: {
         marginTop: 20,
         fontSize: 25,
         fontWeight: "bold",
@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
     },
 
     line: {
-        flex: 1,
+        width: 80,
         height: 1,
         backgroundColor: "#525151ff",
     },
