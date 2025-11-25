@@ -1,7 +1,21 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { View, Text, TextInput, TouchableOpacity, Alert, ActivityIndicator } from "react-native";
 import { styles } from "./style";
 
-export function Cadastro () {
+export const Cadastro: React.FC = () => {
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    
+    const handleCadastro = (): void => {
+        if (isLoading) return; 
+
+        setIsLoading(true);
+
+        setTimeout(() => {
+            setIsLoading(false);
+            Alert.alert("Sucesso", "Cadastro concluído!");
+        }, 3000);
+    };
+    
     return(
         
         <View style={styles.container}>
@@ -45,8 +59,19 @@ export function Cadastro () {
                 secureTextEntry
             />
 
-            <TouchableOpacity style={styles.button}>
-                 <Text style={styles.buttonText}>Criar Conta</Text>
+            <TouchableOpacity 
+                style={[styles.button, isLoading && styles.buttonDisabled]} 
+                onPress={handleCadastro}
+                disabled={isLoading} 
+            >
+                {isLoading ? (
+                    <View style={styles.buttonContent}>
+                        <ActivityIndicator color="#FFF" style={{ marginRight: 8 }} />
+                        <Text style={styles.buttonText}>Cadastrando...</Text>
+                    </View>
+                ) : (
+                    <Text style={styles.buttonText}>Criar Conta</Text>
+                )}
             </TouchableOpacity>
 
             <Text style={styles.termos}>

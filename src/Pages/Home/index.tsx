@@ -4,8 +4,6 @@ import { styles } from "./style"
 
 export const Home = () => {
     return(
-        <View style={styles.container}>
-
-        </View>
+        <View style={styles.container}></View>
     )
 }
