@@ -35,9 +35,6 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 12,
         marginBottom: 20,
     },
-
-
-
     button: {
         width: "100%",
         height: 48,
@@ -87,5 +84,10 @@ export const styles = StyleSheet.create({
         color: "#2DAB87",
         textDecorationLine: "underline",
     },
+    ContainerBotao:{
+        margin:0,
+        padding:0,
+        transform: [{ translateY: 4 }],
+    }
 
 })
