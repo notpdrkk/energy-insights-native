@@ -13,7 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 
 export const Cadastro: React.FC = () => {
     const { cadastrarUser } = useContext(AuthContext);
-    const navigation = useNavigation(); // 👉 NECESSÁRIO PARA REDIRECIONAR
+    const navigation = useNavigation();
 
     const [nome, setNome] = useState("");
     const [sobrenome, setSobrenome] = useState("");
@@ -38,7 +38,7 @@ export const Cadastro: React.FC = () => {
 
             Alert.alert("Sucesso", "Conta criada com sucesso!");
 
-            // ✅ REDIRECIONA PARA LOGIN APÓS O CADASTRO
+           
             navigation.navigate("Login");
 
         } catch (err: any) {
@@ -57,7 +57,7 @@ export const Cadastro: React.FC = () => {
     return (
         <View style={styles.container}>
 
-            {/* CABEÇALHO */}
+            
             <View style={styles.header}>
                 <Text style={styles.logo}>Energy Electric</Text>
                 <Text style={styles.title}>Criar uma conta</Text>
@@ -66,7 +66,7 @@ export const Cadastro: React.FC = () => {
                 </Text>
             </View>
 
-            {/* NOME + SOBRENOME */}
+            
             <View style={styles.row}>
                 <TextInput
                     style={[styles.input, styles.half]}
@@ -85,7 +85,7 @@ export const Cadastro: React.FC = () => {
                 />
             </View>
 
-            {/* EMAIL */}
+            
             <TextInput
                 style={styles.input}
                 placeholder="email@dominio.com"
@@ -95,7 +95,7 @@ export const Cadastro: React.FC = () => {
                 onChangeText={setEmail}
             />
 
-            {/* SENHA */}
+            
             <TextInput
                 style={styles.input}
                 placeholder="Senha"
@@ -105,7 +105,7 @@ export const Cadastro: React.FC = () => {
                 onChangeText={setSenha}
             />
 
-            {/* CONFIRMAR */}
+           
             <TextInput
                 style={styles.input}
                 placeholder="Confirmar senha"
@@ -115,7 +115,7 @@ export const Cadastro: React.FC = () => {
                 onChangeText={setConfirmar}
             />
 
-            {/* BOTÃO */}
+            
             <TouchableOpacity
                 style={[styles.button, isLoading && styles.buttonDisabled]}
                 onPress={handleCadastro}
@@ -131,7 +131,7 @@ export const Cadastro: React.FC = () => {
                 )}
             </TouchableOpacity>
 
-            {/* TERMOS */}
+            
             <Text style={styles.termos}>
                 Ao clicar em continuar, você concorda com os nossos{" "}
                 <Text style={styles.link}>Termos de serviço</Text> e{" "}
