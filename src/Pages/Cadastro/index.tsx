@@ -1,21 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, Text, TextInput, TouchableOpacity, Alert, ActivityIndicator } from "react-native";
 import { styles } from "./style";
+import { AuthContext } from "../../Context/AuthContext";
 
 export const Cadastro: React.FC = () => {
+    const { cadastrarUser } = useContext(AuthContext);
+
+    const [nome, setNome] = useState("");
+    const [sobrenome, setSobrenome] = useState("");
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
+    const [confirmar, setConfirmar] = useState("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    
-    const handleCadastro = (): void => {
-        if (isLoading) return; 
+
+    const handleCadastro = async () => {
+        if (senha !== confirmar) return Alert.alert("As senhas não coincidem");
 
         setIsLoading(true);
+        const ok = await cadastrarUser(nome, sobrenome, email, senha);
+        setIsLoading(false);
 
-        setTimeout(() => {
-            setIsLoading(false);
-            Alert.alert("Sucesso", "Cadastro concluído!");
-        }, 3000);
+        ok ? Alert.alert("Sucesso", "Conta criada!") :
+             Alert.alert("Erro", "Falha ao cadastrar");
     };
-    
+
     return(
         
         <View style={styles.container}>
