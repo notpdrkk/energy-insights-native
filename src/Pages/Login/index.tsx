@@ -93,7 +93,7 @@ export function Login({ navigation }: Props) {
                 <View style={{ marginTop: 2, alignItems: "center"}}>
                     <Text style={styles.footerText}>Não tem conta? </Text>
                     
-                    <TouchableOpacity onPress={() => navigation.navigate("Cadastro")}>
+                    <TouchableOpacity onPress={() => navigation.navigate("StackCadastro")}>
                         <Text style={styles.link}>Clique aqui</Text>
                     </TouchableOpacity>
                 </View>

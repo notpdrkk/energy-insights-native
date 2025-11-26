@@ -39,7 +39,7 @@ export const Cadastro: React.FC = () => {
             Alert.alert("Sucesso", "Conta criada com sucesso!");
 
            
-            navigation.navigate("Login");
+            navigation.navigate("MainDrawer");
 
         } catch (err: any) {
             setIsLoading(false);
