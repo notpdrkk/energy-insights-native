@@ -1,27 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { ScrollView, View, Text, TextInput, TouchableOpacity, ActivityIndicator, Alert } from "react-native";
 import { AppleButton } from './../../Components/AppleButton/index';
 import { GoogleButton } from './../../Components/GoogleButton/index';
 import { styles } from './style';
+import { AuthContext } from "../../Context/AuthContext";
 
-interface LoginProps {
-    navigation: {
-        navigate: (screen: string) => void;
-    };
+interface Props {
+  navigation: any; // você pode colocar o tipo correto do React Navigation se quiser
 }
 
-export function Login({ navigation }: LoginProps) {
+export function Login({ navigation }: Props) {
+    const { loginUser } = useContext(AuthContext);
+
+    const [email, setEmail] = useState("");
+    const [senha, setSenha] = useState("");
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const handleLogin = () => {
-        if (isLoading) return;
-
+    const handleLogin = async () => {
         setIsLoading(true);
 
-        setTimeout(() => {
+        try {
+            await loginUser(email, senha);
             setIsLoading(false);
-            Alert.alert("Sucesso", "Login concluído!");
-        }, 3000);
+            navigation.navigate("Dashboard");
+        } catch (err) {
+            setIsLoading(false);
+            Alert.alert("Erro", "Email ou senha incorretos");
+        }
     };
 
     return (
@@ -37,6 +42,8 @@ export function Login({ navigation }: LoginProps) {
                     placeholder="email@dominio.com"
                     placeholderTextColor="#999"
                     style={styles.input}
+                    value={email}
+                    onChangeText={setEmail}
                 />
 
                 <TextInput
@@ -44,6 +51,8 @@ export function Login({ navigation }: LoginProps) {
                     placeholderTextColor="#999"
                     secureTextEntry
                     style={styles.input}
+                    value={senha}
+                    onChangeText={setSenha}
                 />
 
                 {/* BOTÃO PRINCIPAL */}
