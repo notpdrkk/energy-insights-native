@@ -1,19 +1,14 @@
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { ApplianceProvider } from "./src/Context/EnergyContext/index";
-
-import Home from "./src/Pages/Home";
-
-const Stack = createNativeStackNavigator();
+import { AuthProvider } from "./src/Context/AuthContext";
+import { StackRouters } from "./src/Navigation/StackNavigator";
 
 export default function App() {
   return (
-    <ApplianceProvider>
+    <AuthProvider>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
-        </Stack.Navigator>
+        <StackRouters />
       </NavigationContainer>
-    </ApplianceProvider>
+    </AuthProvider>
   );
 }
