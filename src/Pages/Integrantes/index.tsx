@@ -1,6 +1,5 @@
 import { Dimensions, FlatList, Image, ImageBackground, Text, View } from "react-native";
 import { styles } from "./style";
-import { Menu } from "../../Components/Menu";
 
 const { width } = Dimensions.get("window");
 

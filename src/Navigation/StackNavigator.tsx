@@ -9,8 +9,8 @@ const Stack = createStackNavigator<RootStackParamList>();
 export const StackRouters = () => {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Tabs" component={TabsNavigator}/>
       <Stack.Screen name="Login" component={Login}/>
+      <Stack.Screen name="Tabs" component={TabsNavigator}/>
       <Stack.Screen name="Cadastro" component={Cadastro}/>
     </Stack.Navigator>
   );

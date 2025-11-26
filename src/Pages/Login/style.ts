@@ -65,7 +65,7 @@ export const styles = StyleSheet.create({
     },
 
     line: {
-        width: 80,
+        width: 100,
         height: 1,
         backgroundColor: "#525151ff",
     },
@@ -87,6 +87,5 @@ export const styles = StyleSheet.create({
     ContainerBotao:{
         margin:0,
         padding:0,
-        transform: [{ translateY: 4 }],
     }
 })
