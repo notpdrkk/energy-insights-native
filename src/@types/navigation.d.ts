@@ -1,33 +1,26 @@
 export type RootStackParamList = {
-    Login: undefined;
-    Cadastro: undefined;
-    HistoricoScreen: undefined;
-    RankingScreen: undefined;
-    ConsumoScreen: undefined;
-    Perfil: undefined;
-    Integrantes: undefined;
-    Home: undefined;
-    Tabs: undefined;
-    Drawer: undefined;
+    StackLogin: undefined;
+    StackCadastro: undefined;
+    MainDrawer: undefined;
+    TabDrawerHome: undefined;
 };
 
-export type Tablist = {
-    Home: undefined;
-    Perfil: undefined;
-    Consumo: undefined;
-    Ranking: undefined; 
+export type RootTabParamlist = {
+    TabHome: undefined;
+    TabRanking: undefined; 
+    TabHistorico: undefined;
 };
 
-export type DrawerList = {
-    DrawerTabs: undefined;
+export type RootDrawerParamList = {
+    DrawerHome: undefined;
     DrawerPerfil: undefined;
-    DrawerIntegrantes: undefined;
     DrawerConsumoScreen: undefined;
+    DrawerIntegrantes: undefined;
 };
 
 
 declare global { 
     namespace ReactNavigation {
-        interface RootParamList extends RootStackParamList, Tablist, DrawerList {}
+        interface RootParamList extends RootStackParamList, RootTabParamlist, RootDrawerParamList {}
     }
 }

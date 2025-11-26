@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 import { styles } from "./style";
-import { fetchAppliances } from "../../Apis/ApplianceApi/applianceApi";
+import { fetchAppliances } from "../../Apis/applianceApi/applianceApi";
 import { useAppliances } from "../../Context/EnergyContext";
 import { Appliance } from "../../types/appliance";
 
