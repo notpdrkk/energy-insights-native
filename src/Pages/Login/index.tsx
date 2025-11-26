@@ -22,7 +22,7 @@ export function Login({ navigation }: Props) {
         try {
             await loginUser(email, senha);
             setIsLoading(false);
-            navigation.navigate("Dashboard");
+            navigation.navigate("Tabs");
         } catch (err) {
             setIsLoading(false);
             Alert.alert("Erro", "Email ou senha incorretos");

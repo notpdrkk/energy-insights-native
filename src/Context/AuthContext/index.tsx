@@ -1,11 +1,13 @@
 import React, { createContext, useState, useEffect, ReactNode } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { api } from "../../Apis/mockApi";
+import { api } from "../../Apis/UserApi/userApi";
 
 interface User {
   id: string;
   nome: string;
+  sobrenome: string;
   email: string;
+  senha: string;
 }
 
 interface AuthContextData {
@@ -34,8 +36,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       const saved = await AsyncStorage.getItem("@user");
       if (saved) setUser(JSON.parse(saved));
-    } catch (err) {
-      console.log("Erro ao carregar usuário:", err);
     } finally {
       setLoading(false);
     }
@@ -43,13 +43,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   async function cadastrarUser(nome: string, sobrenome: string, email: string, senha: string) {
     try {
-      const res = await api.post("/users", { nome, sobrenome, email, senha });
+      const res = await api.post("/users", {
+        nome,
+        sobrenome,
+        email,
+        senha,
+      });
+
       const newUser: User = res.data;
+
       setUser(newUser);
       await AsyncStorage.setItem("@user", JSON.stringify(newUser));
+
       return newUser;
-    } catch (err) {
-      throw new Error("Erro ao cadastrar usuário");
+
+    } catch (err: any) {
+      console.log("ERRO NO CADASTRO:", err.response?.data || err.message);
+      throw err;
     }
   }
 
@@ -59,14 +69,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const users: User[] = res.data;
 
       const found = users.find(
-        (u: any) => u.email === email && (u as any).senha === senha
+        (u) => u.email === email && u.senha === senha
       );
+
       if (!found) throw new Error("Email ou senha inválidos");
 
       setUser(found);
       await AsyncStorage.setItem("@user", JSON.stringify(found));
-    } catch (err: any) {
-      throw new Error(err.message || "Erro ao fazer login");
+    } catch (err) {
+      console.log("ERRO NO LOGIN:", err);
+      throw err;
     }
   }
 

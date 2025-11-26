@@ -1,63 +1,84 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { styles } from "./style";
+import { styles } from "./style"; 
 
-interface Props {
+export interface ApiItem {
   id: string;
-  potencia: number;
-  horas: number;
-  consumoMensal: number;
-  custoMensal: number;
-  onDelete?: (id: string) => void;
-  onEdit?: () => void;
+  name: string;
+  category?: string;
+  watts?: number;
+  kwh_month?: number;
+  icon?: string;
+  kwh_daily?: string | number; // ⬅ agora o TS aceita
 }
 
-function CardConsumo({
-  id,
-  potencia,
-  horas,
-  consumoMensal,
-  custoMensal,
-  onDelete,
-  onEdit,
-}: Props) {
+export interface LegacyItem {
+  id?: string;
+  potencia?: number;
+  horas?: number;
+  consumoMensal?: number;
+  custoMensal?: number;
+  nome?: string;
+}
+
+type Props = {
+  item?: ApiItem;
+
+  id?: string;
+  potencia?: number;
+  horas?: number;
+  consumoMensal?: number;
+  custoMensal?: number;
+  nome?: string;
+
+  onDelete?: (id: string) => void;
+  onEdit?: () => void;
+};
+
+export default function CardConsumo(props: Props) {
+  const { item, id, potencia, consumoMensal, nome, custoMensal, onDelete, onEdit } = props;
+
+  const displayId = item?.id ?? id ?? "0";
+  const displayName = item?.name ?? nome ?? "Aparelho";
+  const displayWatts = item?.watts ?? potencia ?? 0;
+  const displayKwh = (item?.kwh_month ?? consumoMensal ?? 0) as number;
+
   return (
     <View style={styles.card}>
-      <Text style={styles.nome}>ID: {id}</Text>
+        
+      <Text style={styles.cardTitle}>{displayName}</Text>
 
-      <View style={styles.linha}>
+      <View style={styles.row}>
         <Text style={styles.label}>Potência:</Text>
-        <Text style={styles.valor}>{potencia} W</Text>
+        <Text style={styles.value}>{displayWatts}W</Text>
       </View>
 
-      <View style={styles.linha}>
-        <Text style={styles.label}>Uso diário:</Text>
-        <Text style={styles.valor}>{horas} h/dia</Text>
+      <View style={styles.row}>
+        <Text style={styles.label}>Consumo Mensal:</Text>
+        <Text style={styles.value}>{displayKwh.toFixed(2)} kWh</Text>
       </View>
 
-      <View style={styles.linha}>
-        <Text style={styles.label}>Consumo mensal:</Text>
-        <Text style={styles.valor}>{consumoMensal.toFixed(2)} kWh</Text>
-      </View>
-
-      <View style={styles.linha}>
-        <Text style={styles.label}>Custo mensal:</Text>
-        <Text style={styles.custo}>R$ {custoMensal.toFixed(2)}</Text>
-      </View>
-
-      {onEdit && onDelete && (
-        <View style={styles.rowButtons}>
-          <TouchableOpacity style={styles.editButton} onPress={onEdit}>
-            <Text style={styles.buttonText}>Editar</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.deleteButton} onPress={() => onDelete(id)}>
-            <Text style={styles.buttonText}>Excluir</Text>
-          </TouchableOpacity>
+      {item?.kwh_daily && (
+        <View style={styles.row}>
+            <Text style={styles.label}>Consumo diário:</Text>
+            <Text style={styles.value}>{item.kwh_daily} kWh/dia</Text>
         </View>
       )}
+
+      {custoMensal !== undefined && (
+        <View style={styles.row}>
+          <Text style={styles.label}>Custo:</Text>
+          <Text style={styles.cost}>R$ {custoMensal.toFixed(2)}</Text>
+        </View>
+      )}
+
+      {onEdit || onDelete ? (
+        <View style={styles.buttons}>
+          {onEdit && <Text style={styles.btnEdit} onPress={onEdit}>Editar</Text>}
+          {onDelete && <Text style={styles.btnDelete} onPress={() => onDelete(displayId)}>Excluir</Text>}
+        </View>
+      ) : null}
+
     </View>
   );
 }
-
-export default CardConsumo;

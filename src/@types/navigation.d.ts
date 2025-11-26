@@ -9,24 +9,25 @@ export type RootStackParamList = {
     Home: undefined;
     Tabs: undefined;
     Drawer: undefined;
-}
+};
 
 export type Tablist = {
     Home: undefined;
     Perfil: undefined;
     Consumo: undefined;
     Ranking: undefined; 
-}
-
-declare global { 
-    namespace ReactNavigation {
-        interface RootParamList extends StackList, Tablist {}
-    }
-}
+};
 
 export type DrawerList = {
     DrawerTabs: undefined;
     DrawerPerfil: undefined;
     DrawerIntegrantes: undefined;
     DrawerConsumoScreen: undefined;
+};
+
+
+declare global { 
+    namespace ReactNavigation {
+        interface RootParamList extends RootStackParamList, Tablist, DrawerList {}
+    }
 }

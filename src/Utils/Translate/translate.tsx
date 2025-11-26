@@ -1,4 +1,4 @@
-export const categoryTranslate: Record<string, string> = {
+const categoryTranslate: Record<string, string> = {
   "Refrigerators": "Geladeiras",
   "Air Conditioners": "Ar-condicionado",
   "Washing Machines": "Máquinas de lavar",
@@ -12,7 +12,7 @@ export const categoryTranslate: Record<string, string> = {
   "Other": "Outros",
 };
 
-export const applianceNameTranslate: Record<string, string> = {
+const applianceNameTranslate: Record<string, string> = {
   "Refrigerator": "Geladeira",
   "Air Conditioner": "Ar-condicionado",
   "Washing Machine": "Máquina de lavar",
@@ -24,3 +24,21 @@ export const applianceNameTranslate: Record<string, string> = {
   "Laptop": "Notebook",
   "Fan": "Ventilador",
 };
+
+export function traduzir(value: string): string {
+  if (!value) return value;
+
+  const normalized = value.trim();
+
+  // tenta encontrar nas categorias
+  if (categoryTranslate[normalized]) {
+    return categoryTranslate[normalized];
+  }
+
+  // tenta encontrar nos nomes de aparelho
+  if (applianceNameTranslate[normalized]) {
+    return applianceNameTranslate[normalized];
+  }
+
+  return value; // caso não exista tradução
+}

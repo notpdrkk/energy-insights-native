@@ -1,23 +1,14 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React from "react";
 import { AuthProvider } from "./src/Context/AuthContext";
-
-
-import { Login } from "./src/Pages/Login";
-import { Cadastro } from "./src/Pages/Cadastro";
-
-
-const Stack = createNativeStackNavigator();
+import { ApplianceProvider } from "./src/Context/EnergyContext"; 
+import { AppNavigator } from "./src/Navigation/AppNavigator";
 
 export default function App() {
   return (
     <AuthProvider>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Login">
-          <Stack.Screen name="Login" component={Login} options={{ headerShown:false }}/>
-          <Stack.Screen name="Cadastro" component={Cadastro} options={{ headerShown:false }}/>
-        </Stack.Navigator>
-      </NavigationContainer>
+      <ApplianceProvider>   
+        <AppNavigator />
+      </ApplianceProvider>
     </AuthProvider>
   );
 }
