@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Home } from '../Pages/Home'
+import  Home  from '../Pages/Home'
 import { Perfil } from '../Pages/Perfil'
 import { Integrantes } from '../Pages/Integrantes'
 

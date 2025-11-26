@@ -1,14 +1,14 @@
 import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
 import { AuthProvider } from "./src/Context/AuthContext";
-import { StackRouters } from "./src/Navigation/StackNavigator";
+import { ApplianceProvider } from "./src/Context/EnergyContext"; 
+import { AppNavigator } from "./src/Navigation/AppNavigator";
 
 export default function App() {
   return (
     <AuthProvider>
-      <NavigationContainer>
-        <StackRouters />
-      </NavigationContainer>
+      <ApplianceProvider>   
+        <AppNavigator />
+      </ApplianceProvider>
     </AuthProvider>
   );
 }

@@ -5,56 +5,69 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "rgba(0,0,0,0.5)",
     justifyContent: "center",
+    alignItems: "center",
     padding: 20,
   },
 
   modalBox: {
-    backgroundColor: "#FFF",
+    width: "100%",
+    maxHeight: "80%",
+    backgroundColor: "#FFFFFF",
     padding: 20,
     borderRadius: 12,
-    maxHeight: "80%",
+    elevation: 5, // sombra Android
+    shadowColor: "#000", // sombra iOS
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
   },
 
   title: {
     fontSize: 22,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginBottom: 15,
+    color: "#222",
   },
 
   item: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     paddingVertical: 12,
     borderBottomWidth: 1,
-    borderColor: "#EEE",
+    borderColor: "#E5E5E5",
   },
 
   itemText: {
     fontSize: 16,
+    color: "#333",
   },
 
   addButton: {
     backgroundColor: "#4CAF50",
     paddingHorizontal: 15,
-    paddingVertical: 6,
+    paddingVertical: 8,
     borderRadius: 8,
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   addButtonText: {
     color: "#FFF",
     fontWeight: "bold",
+    fontSize: 14,
   },
 
   closeButton: {
     marginTop: 25,
     backgroundColor: "#333",
-    padding: 12,
+    padding: 14,
     borderRadius: 8,
+    alignItems: "center",
   },
 
   closeText: {
-    color: "#FFF",
-    textAlign: "center",
+    color: "#FFFFFF",
     fontWeight: "bold",
+    fontSize: 16,
   },
 });

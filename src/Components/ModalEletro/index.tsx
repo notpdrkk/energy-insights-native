@@ -31,8 +31,18 @@ export default function ModalEletro({ visible, onClose }: Props) {
   const load = async () => {
     try {
       setLoading(true);
-      const data = await fetchAppliances();
-      setLista(data);
+
+      const data = await fetchAppliances(); 
+
+      
+      const formatado: Appliance[] = data.map((item) => ({
+        id: item.id,
+        nome: item.nome,
+        potencia: item.potencia,           
+        consumoMensal: item.consumoMensal, 
+      }));
+
+      setLista(formatado);
     } catch (err) {
       console.log("Erro API:", err);
     } finally {
@@ -44,6 +54,7 @@ export default function ModalEletro({ visible, onClose }: Props) {
     <Modal visible={visible} animationType="slide" transparent>
       <View style={styles.overlay}>
         <View style={styles.modalBox}>
+          
           <Text style={styles.title}>Eletrodomésticos</Text>
 
           {loading ? (
@@ -54,7 +65,9 @@ export default function ModalEletro({ visible, onClose }: Props) {
               keyExtractor={(item) => item.id}
               renderItem={({ item }) => (
                 <View style={styles.item}>
-                  <Text style={styles.itemText}>{item.nome}</Text>
+                  <Text style={styles.itemText}>
+                    {item.nome} — {item.consumoMensal} kWh/mês
+                  </Text>
 
                   <TouchableOpacity
                     style={styles.addButton}
@@ -73,6 +86,7 @@ export default function ModalEletro({ visible, onClose }: Props) {
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
             <Text style={styles.closeText}>Fechar</Text>
           </TouchableOpacity>
+
         </View>
       </View>
     </Modal>
