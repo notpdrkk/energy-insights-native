@@ -2,36 +2,23 @@ import React, { useEffect, useState } from "react";
 import { View, Text, FlatList } from "react-native";
 import { styles } from "./style";
 import CardConsumo from "../../Components/CardConsumo";
+import { api } from "../../Apis/mockApi";
 
 export default function RankingScreen() {
   const [lista, setLista] = useState<any[]>([]);
-  const resource = "consumos";
 
   useEffect(() => {
-    fetchListaMock();
+    fetchRanking();
   }, []);
 
-  async function fetchListaMock() {
-    const mock = [
-      {
-        id: "1",
-        potencia: 900,
-        horas: 5,
-        consumoMensal: (900 / 1000) * 5 * 30,
-        custoMensal: ((900 / 1000) * 5 * 30) * 0.85,
-      },
-      {
-        id: "2",
-        potencia: 60,
-        horas: 12,
-        consumoMensal: (60 / 1000) * 12 * 30,
-        custoMensal: ((60 / 1000) * 12 * 30) * 0.85,
-      },
-    ];
-
-    setLista(mock.sort((a, b) => b.consumoMensal - a.consumoMensal));
+  async function fetchRanking() {
+    try {
+      const res = await api.get("/consumos");
+      setLista(res.data.sort((a: any, b: any) => b.consumoMensal - a.consumoMensal));
+    } catch (err) {
+      console.log(err);
+    }
   }
-
 
   return (
     <View style={styles.container}>

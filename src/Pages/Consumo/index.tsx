@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, FlatList } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, TextInput, TouchableOpacity, FlatList, Alert } from "react-native";
 import { styles } from "./style";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useEffect } from "react";
+import { api } from "../../Apis/mockApi"; 
+import CardConsumo from "../../Components/CardConsumo";
 
 interface ItemConsumo {
   id: string;
@@ -20,7 +20,20 @@ export default function ConsumoScreen() {
   const [tarifa, setTarifa] = useState("");
   const [lista, setLista] = useState<ItemConsumo[]>([]);
 
-  function calcular() {
+  useEffect(() => {
+    fetchLista();
+  }, []);
+
+  async function fetchLista() {
+    try {
+      const res = await api.get("/consumos");
+      setLista(res.data.sort((a: ItemConsumo, b: ItemConsumo) => b.consumoMensal - a.consumoMensal));
+    } catch (err) {
+      console.log("Erro ao carregar consumos:", err);
+    }
+  }
+
+  async function calcular() {
     if (!nome || !potencia || !horas || !tarifa) return;
 
     const pot = parseFloat(potencia);
@@ -39,21 +52,20 @@ export default function ConsumoScreen() {
       custo,
     };
 
-    const novaLista = [...lista, novoItem].sort(
-      (a, b) => b.consumoMensal - a.consumoMensal
-    );
-
-    setLista(novaLista);
-
-    setNome("");
-    setPotencia("");
-    setHoras("");
-    setTarifa("");
+    try {
+      await api.post("/consumos", novoItem);
+      setLista((prev) => [...prev, novoItem].sort((a, b) => b.consumoMensal - a.consumoMensal));
+      setNome("");
+      setPotencia("");
+      setHoras("");
+      setTarifa("");
+    } catch (err) {
+      Alert.alert("Erro", "Não foi possível salvar o consumo");
+    }
   }
 
   return (
     <View style={styles.container}>
-
       <Text style={styles.title}>Calcular Consumo de Energia</Text>
 
       <TextInput
@@ -97,14 +109,15 @@ export default function ConsumoScreen() {
         data={lista}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <View style={styles.card}>
-            <Text style={styles.cardTitle}>{item.nome}</Text>
-            <Text>Consumo mensal: {item.consumoMensal.toFixed(2)} kWh</Text>
-            <Text>Custo mensal: R$ {item.custo.toFixed(2)}</Text>
-          </View>
+          <CardConsumo
+            id={item.id}
+            potencia={item.potencia}
+            horas={item.horas}
+            consumoMensal={item.consumoMensal}
+            custoMensal={item.custo}
+          />
         )}
       />
-
     </View>
   );
 }

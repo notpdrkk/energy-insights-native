@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { View, TextInput, Text, TouchableOpacity, FlatList, Alert } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, FlatList, Alert } from "react-native";
 import { styles } from "./style";
 import CardConsumo from "../../Components/CardConsumo";
+import { api } from "../../Apis/mockApi";
 
-
-type Item = {
+interface Item {
   id: string;
   potencia: number;
   horas: number;
   tarifa: number;
   consumoMensal: number;
   custoMensal: number;
-};
+}
 
-export default function HistoricoScreen({ route }: any) {
+export default function HistoricoScreen() {
   const [lista, setLista] = useState<Item[]>([]);
   const [editing, setEditing] = useState<Item | null>(null);
   const [pot, setPot] = useState("");
@@ -21,30 +21,16 @@ export default function HistoricoScreen({ route }: any) {
   const [tar, setTar] = useState("");
 
   useEffect(() => {
-    loadMock();
+    fetchHistorico();
   }, []);
 
-  function loadMock() {
-    const mock: Item[] = [
-      {
-        id: "1",
-        potencia: 1500,
-        horas: 2,
-        tarifa: 0.85,
-        consumoMensal: (1500 / 1000) * 2 * 30,
-        custoMensal: ((1500 / 1000) * 2 * 30) * 0.85,
-      },
-      {
-        id: "2",
-        potencia: 100,
-        horas: 10,
-        tarifa: 0.85,
-        consumoMensal: (100 / 1000) * 10 * 30,
-        custoMensal: ((100 / 1000) * 10 * 30) * 0.85,
-      },
-    ];
-
-    setLista(mock.sort((a, b) => b.consumoMensal - a.consumoMensal));
+  async function fetchHistorico() {
+    try {
+      const res = await api.get("/consumos");
+      setLista(res.data.sort((a: Item, b: Item) => b.consumoMensal - a.consumoMensal));
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   function startEdit(item: Item) {
@@ -54,7 +40,7 @@ export default function HistoricoScreen({ route }: any) {
     setTar(String(item.tarifa));
   }
 
-  function saveEdit() {
+  async function saveEdit() {
     if (!editing) return;
 
     const potencia = Number(pot);
@@ -64,30 +50,32 @@ export default function HistoricoScreen({ route }: any) {
     const consumoMensal = (potencia / 1000) * horas * 30;
     const custoMensal = consumoMensal * tarifa;
 
-    const updated = lista.map((i) =>
-      i.id === editing.id
-        ? {
-            ...i,
-            potencia,
-            horas,
-            tarifa,
-            consumoMensal,
-            custoMensal,
-          }
-        : i
-    );
+    const updatedItem = { ...editing, potencia, horas, tarifa, consumoMensal, custoMensal };
 
-    setLista(updated.sort((a, b) => b.consumoMensal - a.consumoMensal));
-    setEditing(null);
-    setPot("");
-    setHrs("");
-    setTar("");
-
-    Alert.alert("Sucesso", "Item atualizado!");
+    try {
+      await api.put(`/consumos/${editing.id}`, updatedItem);
+      setLista((prev) =>
+        prev
+          .map((i) => (i.id === editing.id ? updatedItem : i))
+          .sort((a, b) => b.consumoMensal - a.consumoMensal)
+      );
+      setEditing(null);
+      setPot("");
+      setHrs("");
+      setTar("");
+      Alert.alert("Sucesso", "Item atualizado!");
+    } catch {
+      Alert.alert("Erro", "Não foi possível atualizar");
+    }
   }
 
-  function handleDelete(id: string) {
-    setLista((prev) => prev.filter((i) => i.id !== id));
+  async function handleDelete(id: string) {
+    try {
+      await api.delete(`/consumos/${id}`);
+      setLista((prev) => prev.filter((i) => i.id !== id));
+    } catch {
+      Alert.alert("Erro", "Não foi possível excluir");
+    }
   }
 
   return (
