@@ -6,7 +6,7 @@ import { styles } from './style';
 import { AuthContext } from "../../Context/AuthContext";
 
 interface Props {
-  navigation: any; // você pode colocar o tipo correto do React Navigation se quiser
+  navigation: any; 
 }
 
 export function Login({ navigation }: Props) {
@@ -55,7 +55,7 @@ export function Login({ navigation }: Props) {
                     onChangeText={setSenha}
                 />
 
-                {/* BOTÃO PRINCIPAL */}
+
                 <TouchableOpacity
                     style={[styles.button, isLoading && styles.buttonDisabled]}
                     onPress={handleLogin}
@@ -71,7 +71,7 @@ export function Login({ navigation }: Props) {
                     </View>
                 </TouchableOpacity>
 
-                {/* OU */}
+
                 <View style={styles.OuContainer}>
                     <View style={styles.line} />
                     <Text style={styles.OuText}>OU</Text>
