@@ -8,6 +8,7 @@ export type RootStackParamList = {
     Integrantes: undefined;
     Home: undefined;
     Tabs: undefined;
+    Drawer: undefined;
 }
 
 export type Tablist = {
@@ -21,4 +22,11 @@ declare global {
     namespace ReactNavigation {
         interface RootParamList extends StackList, Tablist {}
     }
+}
+
+export type DrawerList = {
+    DrawerTabs: undefined;
+    DrawerPerfil: undefined;
+    DrawerIntegrantes: undefined;
+    DrawerConsumoScreen: undefined;
 }

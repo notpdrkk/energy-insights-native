@@ -1,47 +1,41 @@
-import * as React from 'react';
-import { View } from 'react-native';
+
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import {
-  createStaticNavigation,
-  useNavigation,
-} from '@react-navigation/native';
-import { Button } from '@react-navigation/elements';
+import { DrawerList } from '../@types/navigation';
+import { TabsNavigator } from './TabsNavigator';
 import { Perfil } from '../Pages/Perfil';
-import ConsumoScreen from '../Pages/Consumo';
 import { Integrantes } from '../Pages/Integrantes';
+import ConsumoScreen from '../Pages/Consumo';
 
-function HomeScreen() {
-  const navigation = useNavigation();
 
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button onPress={() => navigation.navigate('TabPerfil')}>
-        Integrantes
-      </Button>
-    </View>
-  );
-}
+const Drawer = createDrawerNavigator<DrawerList>();
 
-function PerfilScreen() {
-  const navigation = useNavigation();
+export const DrawerRouters = () => {
 
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Button onPress={() => navigation.goBack()}>Go back home</Button>
-    </View>
-  );
-}
-
-const Drawer = createDrawerNavigator({
-  screens: {
-    Perfil: Perfil,
-    ConsumoScreen: ConsumoScreen,
-    Integrantes: Integrantes,
-  },
-});
-
-const Navigation = createStaticNavigation(Drawer);
-
-export default function App() {
-  return <Navigation />;
+    <Drawer.Navigator>
+      <Drawer.Screen 
+        name='DrawerTabs' 
+        component={TabsNavigator}
+      />
+      
+      <Drawer.Screen 
+        name='DrawerPerfil' 
+        component={Perfil} 
+        options={{ title: 'Perfil' }}
+      />
+      
+      <Drawer.Screen 
+        name='DrawerIntegrantes' 
+        component={Integrantes} 
+        options={{ title: 'Integrantes' }}
+      />
+      
+      <Drawer.Screen 
+        name='DrawerConsumoScreen' 
+        component={ConsumoScreen} 
+        options={{ title: 'Consumo'}}
+      />
+      
+    </Drawer.Navigator>
+  )
 }
