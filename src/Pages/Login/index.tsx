@@ -90,7 +90,7 @@ export function Login({ navigation }: Props) {
                     onPress={() => console.log("Entrar com Apple")}
                 />
 
-                <View style={{ flexDirection: "row", marginTop: 20 }}>
+                <View style={{ marginTop: 2, alignItems: "center"}}>
                     <Text style={styles.footerText}>Não tem conta? </Text>
                     
                     <TouchableOpacity onPress={() => navigation.navigate("Cadastro")}>
