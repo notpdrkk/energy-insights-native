@@ -10,6 +10,8 @@ export default function Home() {
   const navigation = useNavigation();
   const [modalEletro, setModalEletro] = useState(false);
   const [modalTodos, setModalTodos] = useState(false);
+  const [modalAllVisible, setModalAllVisible] = useState(false);
+
 
   const { listaSelecionados } = useAppliances();
 
@@ -20,11 +22,8 @@ export default function Home() {
   return (
     <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.openDrawer())}>
-          <AntDesign name="menu-fold" size={28} color="#000" />
-        </TouchableOpacity>
 
-        <Text style={styles.logo}>Energy Electric</Text>
+        <Text style={styles.title}>Energy Electric</Text>
 
         <View style={{ width: 28 }} />
       </View>
@@ -59,11 +58,12 @@ export default function Home() {
         ))}
 
         <TouchableOpacity
-          style={styles.verTodosButton}
-          onPress={() => setModalTodos(true)}
+          style={styles.verTodosBtn}
+          onPress={() => setModalAllVisible(true)}
         >
-          <Text style={styles.verTodosText}>Ver todos os produtos</Text>
+          <Text style={styles.verTodosTxt}>Ver todos os produtos</Text>
         </TouchableOpacity>
+
       </ScrollView>
 
       <ModalEletro

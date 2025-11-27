@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     borderColor: "#EEE",
   },
 
-  logo: {
+  title: {
     fontSize: 22,
     fontWeight: "700",
   },
@@ -83,5 +83,20 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     textDecorationLine: "underline",
   },
+  verTodosBtn: {
+    width: "100%",
+    backgroundColor: "#1EB980",
+    paddingVertical: 12,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+  },
+
+  verTodosTxt: {
+    color: "#FFFFFF",
+    fontSize: 16,
+    fontWeight: "bold",
+},
 
 });
