@@ -9,7 +9,7 @@ export interface ApiItem {
   watts?: number;
   kwh_month?: number;
   icon?: string;
-  kwh_daily?: string | number; // ⬅ agora o TS aceita
+  kwh_daily?: string | number; 
 }
 
 export interface LegacyItem {

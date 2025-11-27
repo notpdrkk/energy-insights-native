@@ -1,8 +1,8 @@
 export interface Appliance {
   id: string;
   nome: string;
-  potencia: number;       // W
-  consumoMensal: number;  // kWh/mês
+  potencia: number;       
+  consumoMensal: number; 
 }
 
 export interface ApplianceAPIItem {

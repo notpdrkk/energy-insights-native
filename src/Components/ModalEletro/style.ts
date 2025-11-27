@@ -15,8 +15,8 @@ export const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     padding: 20,
     borderRadius: 12,
-    elevation: 5, // sombra Android
-    shadowColor: "#000", // sombra iOS
+    elevation: 5,
+    shadowColor: "#000", 
     shadowOpacity: 0.2,
     shadowRadius: 6,
   },
