@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import { styles, chartConfig } from "./style";  
 
-export default function ConsumoChart() {
+export function ConsumoChart() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Consumo de Energia</Text>

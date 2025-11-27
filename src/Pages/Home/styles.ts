@@ -1,7 +1,6 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-
   header: {
     flexDirection: "row",
     alignItems: "center",
@@ -97,6 +96,15 @@ export const styles = StyleSheet.create({
     color: "#FFFFFF",
     fontSize: 16,
     fontWeight: "bold",
-},
-
+  },
 });
+
+export const chartConfig = {
+  backgroundColor: "#0c162c",
+  backgroundGradientFrom: "#0c162c",
+  backgroundGradientTo: "#1b2b45",
+  decimalPlaces: 1,
+  color: (opacity = 1) => `rgba(255,255,255,${opacity})`,
+  labelColor: (opacity = 1) => `rgba(255,255,255,${opacity})`,
+  propsForDots: { r: "4" },
+};
