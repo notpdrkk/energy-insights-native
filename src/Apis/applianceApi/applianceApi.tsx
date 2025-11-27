@@ -12,14 +12,13 @@ export async function fetchAppliances(): Promise<Appliance[]> {
   const json: ApplianceAPIItem[] = await res.json();
 
   return json.map((item, index) => {
-    // Corrigir IDs inválidos ou repetidos
     const safeId =
       item.id && item.id !== "" && item.id !== null
         ? String(item.id)
         : `appliance-${index}`;
 
     return {
-      id: `${safeId}-${index}`, // GARANTE UNICIDADE SEMPRE
+      id: `${safeId}-${Date.now()}-${Math.random()}`,
       nome: traduzir(item.name),
       potencia: item.watts,
       consumoMensal: item.kwh_month,

@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { View, Text, TouchableOpacity, ScrollView, Dimensions } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import ModalEletro from "../../Components/ModalEletro";
+import ModalProdutos from "../../Components/ModalProdutos"; 
 import { useAppliances } from "../../Context/EnergyContext";
 import { styles } from "./styles";
 import { LineChart } from "react-native-chart-kit";
-import { chartConfig } from "../../Components/ConsumoChart/style"; 
+import { chartConfig } from "../../Components/ConsumoChart/style";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -34,7 +35,6 @@ export function Home() {
           <Text style={styles.addButtonText}>Adicionar Produto</Text>
         </TouchableOpacity>
 
-  
         <View style={styles.dashboardBox}>
           <Text style={styles.dashboardTitle}>Dashboard de Consumo</Text>
 
@@ -55,12 +55,11 @@ export function Home() {
               width={screenWidth - 40}
               height={220}
               chartConfig={chartConfig}
-              style={{ borderRadius: 12, marginTop: 20 }}
+              style={{ borderRadius: 12, marginTop: 20, alignSelf: "center" }}
               bezier
             />
           )}
         </View>
-      
 
         <Text style={styles.sectionTitle}>Top 3 Consumo</Text>
 
@@ -90,6 +89,13 @@ export function Home() {
         visible={modalEletro}
         onClose={() => setModalEletro(false)}
       />
+
+    
+      <ModalProdutos
+        visible={modalAllVisible}
+        onClose={() => setModalAllVisible(false)}
+      />
+
     </View>
   );
 }
