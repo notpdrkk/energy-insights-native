@@ -9,14 +9,13 @@ import { chartConfig } from "../../Components/ConsumoChart/style";
 
 const screenWidth = Dimensions.get("window").width;
 
-export default function Home() {
+export function Home() {
   const navigation = useNavigation();
   const [modalEletro, setModalEletro] = useState(false);
   const [modalAllVisible, setModalAllVisible] = useState(false);
 
   const { listaSelecionados } = useAppliances();
 
-  // Dados para o gráfico
   const labels = listaSelecionados.map((item) => item.nome);
   const valores = listaSelecionados.map((item) => item.consumoMensal);
 

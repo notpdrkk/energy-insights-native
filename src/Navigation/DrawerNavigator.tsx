@@ -1,10 +1,9 @@
 
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { RootDrawerParamList } from '../@types/navigation';
-import { TabsNavigator } from './TabsNavigator';
 import { Perfil } from '../Pages/Perfil';
 import { Integrantes } from '../Pages/Integrantes';
-import ConsumoScreen from '../Pages/Consumo';
+import { Home } from '@pages/Home';
 
 
 
@@ -39,7 +38,7 @@ export const DrawerRouters = () => {
 
       <Drawer.Screen 
         name='DrawerHome' 
-        component={TabsNavigator}
+        component={Home}
         options={{title: "Home"}}
       />
       
@@ -47,12 +46,6 @@ export const DrawerRouters = () => {
         name='DrawerPerfil' 
         component={Perfil} 
         options={{ title: 'Perfil' }}
-      />
-      
-      <Drawer.Screen 
-        name='DrawerConsumoScreen' 
-        component={ConsumoScreen} 
-        options={{ title: 'Consumo' }}
       />
       
       <Drawer.Screen 
