@@ -1,29 +1,73 @@
+import React, { useEffect, useState } from "react";
 import { View, Text, FlatList } from "react-native";
-import { useAppliances } from "../../Context/EnergyContext";
-import { styles } from "./style"; 
+import { styles } from "./style";
+import CardConsumo from "../../Components/CardConsumo";
+import { api } from "../../Apis/UserApi/userApi";
 
-export default function Ranking() {
-  const { appliances } = useAppliances();
-  const sorted = [...appliances].sort((a, b) => b.consumoMensal - a.consumoMensal);
+
+export interface RankingProps {
+  id: string;
+  name: string;
+  category: string;
+  watts: number;
+  kwh_month: number;
+  icon: string;
+}
+
+
+const RankingScreen: React.FC = () => {
+  const [lista, setLista] = useState<RankingProps[]>([]);
+
+  useEffect(() => {
+    fetchRanking();
+  }, []);
+
+  const fetchRanking = async () => {
+    try {
+      const { data } = await api.get("/consumos");
+
+
+      const listaComId: RankingProps[] = data.map((item: any, index: number) => ({
+        id: String(index + 1),
+        name: item.name,
+        category: item.category,
+        watts: item.watts,
+        kwh_month: item.kwh_month,
+        icon: item.icon,
+      }));
+
+
+      const ordenado = listaComId.sort(
+        (a: RankingProps, b: RankingProps) => b.kwh_month - a.kwh_month
+      );
+
+      setLista(ordenado);
+    } catch (err) {
+      console.warn("Erro ao carregar ranking:", err);
+    }
+  };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Ranking de Consumo</Text>
 
       <FlatList
-        data={sorted}
-        keyExtractor={item => item.id}
+        data={lista}
+        keyExtractor={(item) => item.id}
         renderItem={({ item, index }) => (
-          <View style={styles.card}>
-            <Text style={styles.cardTitle}>
-              {index + 1}° • {item.nome}
-            </Text>
-            <Text>Potência: {item.potencia} W</Text>
-            <Text>Consumo: {item.consumoMensal} kWh/mês</Text>
-          </View>
+          <CardConsumo
+            name={item.name}
+            category={item.category}
+            watts={item.watts}
+            kwh_month={item.kwh_month}
+            icon={item.icon}
+            rank={index + 1}
+          />
         )}
         contentContainerStyle={{ paddingBottom: 20 }}
       />
     </View>
   );
-}
+};
+
+export default RankingScreen;

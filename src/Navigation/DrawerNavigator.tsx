@@ -7,12 +7,36 @@ import { Integrantes } from '../Pages/Integrantes';
 import ConsumoScreen from '../Pages/Consumo';
 
 
+
 const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
 export const DrawerRouters = () => {
 
   return (
-    <Drawer.Navigator screenOptions={{headerShown: false}}>
+    <Drawer.Navigator screenOptions={{
+        drawerStyle: {
+          backgroundColor: "#F1FFF7", 
+          width: 260,
+        },
+
+        drawerActiveTintColor: "#1EB980",      
+        drawerInactiveTintColor: "#333",       
+        drawerActiveBackgroundColor: "#C8F8E4",
+        drawerLabelStyle: {
+          fontSize: 16,
+          fontWeight: "600",
+        },
+
+        headerStyle: {
+          backgroundColor: "#FFFFFF",
+        },
+        headerTintColor: "#1EB980",
+        headerTitleStyle: {
+          fontSize: 18,
+          fontWeight: "700",
+        },
+      }} >
+
       <Drawer.Screen 
         name='DrawerHome' 
         component={TabsNavigator}

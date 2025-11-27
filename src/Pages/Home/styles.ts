@@ -1,138 +1,149 @@
-import { StyleSheet, Dimensions } from "react-native";
-const { width } = Dimensions.get("window");
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "#FFFFFF",
   },
 
   header: {
-    paddingTop: 40,
-    paddingBottom: 15,
-    backgroundColor: "#0A84FF",
+    width: "100%",
+    paddingHorizontal: 18,
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: "#E5E5E5",
+    backgroundColor: "#F9FAFB",
+    flexDirection: "row",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
 
   logoContainer: {
     flexDirection: "row",
     alignItems: "center",
+    gap: 10,
   },
 
   logoIcon: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    marginRight: 8,
+    backgroundColor: "#E8F1FF",
+    padding: 10,
+    borderRadius: 12,
+  },
+
+  iconEmoji: {
+    fontSize: 18,
   },
 
   logoText: {
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#fff",
+    fontSize: 20,
+    fontWeight: "700",
+    color: "#0A84FF",
   },
 
   scrollContent: {
-    paddingBottom: 40,
+    paddingHorizontal: 20,
+    paddingTop: 20,
+    paddingBottom: 120,
   },
 
-  dashboardBox: {
-    backgroundColor: "#F4FDF8",
-    marginHorizontal: width * 0.05,
-    borderRadius: 12,
-    padding: 20,
-    elevation: 2,
-    marginTop: 20,
+  dashboard: {
+    backgroundColor: "#F1F7FF",
+    borderRadius: 14,
+    padding: 18,
+    marginBottom: 25,
+    elevation: 3,
   },
 
   dashboardTitle: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: "700",
+    color: "#111",
+  },
+
+  dashboardInfo: {
+    fontSize: 16,
+    color: "#1E1E1E",
+    marginTop: 6,
+  },
+
+  dashboardMeta: {
+    fontSize: 14,
+    color: "#666",
+    marginTop: 2,
+  },
+
+  progressBarBackground: {
+    width: "100%",
+    height: 12,
+    backgroundColor: "#DCE9FF",
+    borderRadius: 50,
+    marginTop: 14,
+    overflow: "hidden",
+  },
+
+  progressBarFill: {
+    height: "100%",
+    backgroundColor: "#0A84FF",
+    borderRadius: 50,
+  },
+
+  percentText: {
+    fontSize: 14,
+    marginTop: 8,
+    fontWeight: "600",
     color: "#0A84FF",
   },
 
-  dashboardSubtitle: {
-    fontSize: 14,
-    color: "#555",
-    marginTop: 5,
-  },
-
-  dashboardGraph: {
-    height: 100,
-    backgroundColor: "#E3F2FD",
-    borderRadius: 10,
-    marginTop: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
   sectionTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginHorizontal: width * 0.05,
-    marginTop: 25,
-    color: "#333",
+    fontSize: 18,
+    fontWeight: "700",
+    marginBottom: 12,
+    color: "#0A0A0A",
   },
 
   card: {
-    backgroundColor: "#fff",
-    marginHorizontal: width * 0.05,
-    marginTop: 10,
-    padding: 15,
+    backgroundColor: "#FFF",
+    padding: 16,
     borderRadius: 12,
+    marginBottom: 14,
     elevation: 2,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.2,
-    shadowRadius: 1.41,
   },
 
   cardTitle: {
-    fontWeight: "bold",
     fontSize: 16,
+    fontWeight: "700",
     color: "#111",
   },
 
   cardSubtitle: {
+    color: "#6A6A6A",
     marginTop: 4,
-    fontSize: 14,
-    color: "#777",
   },
 
   addButtonBottom: {
-    backgroundColor: "#1EB980",
-    marginHorizontal: width * 0.05,
-    marginTop: 25,
-    paddingVertical: 14,
-    borderRadius: 12,
+    backgroundColor: "#0A84FF",
+    padding: 15,
+    borderRadius: 10,
+    marginTop: 20,
     alignItems: "center",
-    justifyContent: "center",
-    elevation: 5,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
   },
 
   addButtonText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
+    color: "#FFF",
+    fontWeight: "700",
+    fontSize: 15,
   },
 
   verTodosButton: {
-    marginTop: 15,
-    alignSelf: "center",
+    backgroundColor: "#E8F2FF",
+    padding: 14,
+    borderRadius: 10,
+    alignItems: "center",
+    marginTop: 10,
   },
 
   verTodosText: {
     color: "#0A84FF",
     fontWeight: "700",
-    fontSize: 16,
-    textDecorationLine: "underline",
   },
 });
