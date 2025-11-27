@@ -30,15 +30,13 @@ export function traduzir(value: string): string {
 
   const normalized = value.trim();
 
-  // tenta encontrar nas categorias
   if (categoryTranslate[normalized]) {
     return categoryTranslate[normalized];
   }
 
-  // tenta encontrar nos nomes de aparelho
   if (applianceNameTranslate[normalized]) {
     return applianceNameTranslate[normalized];
   }
 
-  return value; // caso não exista tradução
+  return value; 
 }

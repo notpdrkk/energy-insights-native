@@ -1,11 +1,8 @@
-
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { RootDrawerParamList } from '../@types/navigation';
 import { Perfil } from '../Pages/Perfil';
 import { Integrantes } from '../Pages/Integrantes';
-import { Home } from '@pages/Home';
-
-
+import { Home } from '../Pages/Home';
 
 const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
