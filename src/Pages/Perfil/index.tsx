@@ -1,69 +1,109 @@
-import React, { useState } from "react";
-import { Text, View, Alert } from "react-native";
+import React, { useEffect, useState, useContext } from "react";
+import {
+  View,
+  Text,
+  ActivityIndicator,
+  TouchableOpacity,
+} from "react-native";
+
 import * as ImagePicker from "expo-image-picker";
 import { styles } from "./style";
+
 import { CardProfile } from "../../Components/CardProfile";
 import { Button } from "../../Components/ButtonComponent";
 
+import { getUser, updateUser } from "../../Apis/appAPI";
+
+import { AuthContext } from "../../Context/AuthContext";
+import { User } from "../../types/appliance";
+import { useNavigation } from "@react-navigation/native";
+
 export const Perfil = () => {
-  const [photoUri, setPhotoUri] = useState<string | null>(null);
-  const [name] = useState("Usuario exemplo");
+  const navigation = useNavigation();
 
-  const abrirGaleria = async () => {
+  const { user, logout } = useContext(AuthContext);
+  const userId = user?.id;
+
+  const [usuario, setUsuario] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  async function loadData() {
+    if (!userId) return;
+
     try {
-      const { status } =
-        await ImagePicker.requestMediaLibraryPermissionsAsync();
+      setLoading(true);
 
-      if (status !== "granted") {
-        Alert.alert("Permissão necessária");
-        return;
-      }
+      const usuarioData = await getUser(userId);
+      setUsuario(usuarioData);
 
-      const mediaTypesOption =
-        (ImagePicker as any).MediaType?.Images ?? undefined;
-
-      const pickerArgs: any = {
-        allowsEditing: true,
-        aspect: [4, 4],
-        quality: 1,
-      };
-
-      if (mediaTypesOption !== undefined) {
-        pickerArgs.mediaTypes = mediaTypesOption;
-      }
-
-      const result = await ImagePicker.launchImageLibraryAsync(pickerArgs);
-
-      const canceled = (result as any)?.canceled ?? (result as any)?.cancelled;
-      const uri = (result as any)?.assets?.[0]?.uri || (result as any)?.uri;
-
-      if (!canceled && uri) {
-        setPhotoUri(uri);
-        console.log("Imagem selecionada:", uri);
-      }
     } catch (err) {
-      console.log("Erro ao abrir a galeria:", err);
+      console.log("Erro ao carregar perfil:", err);
+    } finally {
+      setLoading(false);
     }
-  };
+  }
 
+  async function alterarFoto() {
+    if (!userId) return;
+
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== "granted") return;
+
+    const result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      const foto = result.assets[0].uri;
+      await updateUser(userId, { photo: foto });
+      loadData();
+    }
+  }
+
+  useEffect(() => {
+    if (user) loadData();
+  }, [user]);
+
+  if (loading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#000" />
+      </View>
+    );
+  }
   return (
     <View style={styles.container}>
-      <CardProfile name={name} image={photoUri} />
-      <Button onPress={abrirGaleria} title="Editar Foto" />
 
-      <View
+      {usuario && (
+        <CardProfile
+          name={`${usuario.nome} ${usuario.sobrenome}`}
+          image={
+            usuario.photo ||
+            "https://cdn-icons-png.flaticon.com/512/149/149071.png"
+          }
+        />
+      )}
+
+      <Button title="Alterar Foto" onPress={alterarFoto} />
+      <TouchableOpacity
         style={{
-          backgroundColor: "gray",
-          padding: 10,
+          marginTop: 30,
+          backgroundColor: "#FF4D4D",
+          paddingVertical: 12,
           borderRadius: 8,
-          marginTop: 20,
-          paddingBottom: "100%",
+          alignItems: "center",
+        }}
+        onPress={async () => {
+          await logout();
+          navigation.navigate("StackLogin");
         }}
       >
-        <Text style={{ color: "white", textAlign: "center" }}>
-          Caixa para mostrar os eletrodomésticos do usuário
+        <Text style={{ color: "#FFF", fontSize: 16, fontWeight: "700" }}>
+          Logout
         </Text>
-      </View>
+      </TouchableOpacity>
+
     </View>
   );
 };
