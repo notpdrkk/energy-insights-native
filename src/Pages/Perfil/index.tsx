@@ -48,7 +48,6 @@ export const Perfil = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Perfil</Text>
       <CardProfile name={name} image={photoUri} />
       <Button onPress={abrirGaleria} title="Editar Foto" />
 

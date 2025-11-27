@@ -6,9 +6,9 @@ export type RootStackParamList = {
 };
 
 export type RootTabParamlist = {
-    TabHome: undefined;
-    TabRanking: undefined; 
-    TabHistorico: undefined;
+    Home: undefined;
+    Ranking: undefined; 
+    Historico: undefined;
 };
 
 export type RootDrawerParamList = {
