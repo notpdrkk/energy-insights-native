@@ -1,68 +1,83 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+const { width } = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F7FDF9",
-    paddingHorizontal: 20,
-    paddingTop: 40,
+    backgroundColor: "#f9f9f9",
+    paddingHorizontal: width * 0.05,
+    paddingTop: 20,
   },
 
   title: {
-    fontSize: 25,
+    fontSize: 22,
     fontWeight: "bold",
-    color: "#1EB980",
+    color: "#0A84FF",
     textAlign: "center",
-    marginBottom: 20,
-  },
-
-  subTitle: {
-    marginTop: 20,
-    fontSize: 18,
-    fontWeight: "bold",
-    color: "#333",
-    marginBottom: 10,
+    marginBottom: 15,
   },
 
   input: {
-    width: "100%",
-    height: 48,
-    borderWidth: 1,
-    borderColor: "#DDD",
-    borderRadius: 8,
-    paddingHorizontal: 12,
-    marginBottom: 15,
     backgroundColor: "#fff",
-  },
-
-  button: {
-    width: "100%",
-    height: 48,
-    backgroundColor: "#38C695",
-    borderRadius: 8,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 10,
-  },
-
-  buttonText: {
-    color: "#FFF",
+    padding: 12,
+    borderRadius: 10,
+    marginBottom: 15,
     fontSize: 16,
-    fontWeight: "bold",
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
   },
 
   card: {
-    backgroundColor: "#FFF",
+    backgroundColor: "#fff",
     padding: 15,
-    borderRadius: 8,
-    marginBottom: 15,
-    borderWidth: 1,
-    borderColor: "#E0E0E0",
+    borderRadius: 12,
+    marginBottom: 10,
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
   },
 
   cardTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
-    marginBottom: 5,
+    marginBottom: 6,
+    color: "#111",
+  },
+
+  row: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 4,
+  },
+
+  label: {
+    fontWeight: "600",
+    color: "#555",
+  },
+
+  value: {
+    color: "#333",
+  },
+
+  buttons: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    marginTop: 8,
+  },
+
+  btnEdit: {
+    color: "#1EB980",
+    fontWeight: "bold",
+    marginRight: 15,
+  },
+
+  btnDelete: {
+    color: "#FF3B30",
+    fontWeight: "bold",
   },
 });

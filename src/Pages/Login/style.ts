@@ -1,91 +1,60 @@
 import { StyleSheet } from "react-native";
 
-
 export const styles = StyleSheet.create({
-
-    container: {
-        flex: 1,
-        backgroundColor: '#F7FDF9',
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: 20,
-    },
-
-    header: {
-        alignItems: "center",
-        marginBottom: 40,
-    },
-    title: {
-        fontSize: 30,
-        fontWeight: "bold",
-    },
-    subtitle: {
-        marginTop: 20,
-        fontSize: 25,
-        fontWeight: "bold",
-        color: "#1EB980",
-    },
-
-    input: {
-        width: "100%",
-        height: 48,
-        borderWidth: 1,
-        borderColor: "#DDD",
-        borderRadius: 8,
-        paddingHorizontal: 12,
-        marginBottom: 20,
-    },
-    button: {
-        width: "100%",
-        height: 48,
-        backgroundColor: "#38C695",
-        borderRadius: 8,
-        justifyContent: "center",
-        alignItems: "center",
-        marginBottom: 25,
-    },
-    buttonText: {
-        color: "#FFF",
-        fontSize: 16,
-        fontWeight: "bold",
-    },
-    buttonContent: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    buttonDisabled: {
-        backgroundColor: "#A3A3A3", 
-    },
-    OuContainer: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        marginVertical: 20,
-    },
-
-    line: {
-        width: 100,
-        height: 1,
-        backgroundColor: "#525151ff",
-    },
-
-    OuText: {
-        marginHorizontal: 10,
-        fontSize: 14,
-        color: "#1f1f1fff",
-        fontWeight: "500",
-    },
-    footerText: {
-        marginTop: 20,
-        color: "#777",
-    },
-    link: {
-        color: "#2DAB87",
-        textDecorationLine: "underline",
-    },
-    ContainerBotao:{
-        margin:0,
-        padding:0,
-    }
-})
+  container: {
+    flex: 1,
+    backgroundColor: "#F7FDF9",
+    paddingHorizontal: 25,
+    paddingTop: 60,
+  },
+  header: {
+    alignItems: "center",
+    marginBottom: 40,
+  },
+  logo: {
+    fontSize: 30,
+    fontWeight: "700",
+    color: "#1EB980",
+    marginBottom: 12,
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: "700",
+    color: "#1EB980",
+  },
+  subtitle: {
+    fontSize: 14,
+    color: "#555",
+    marginTop: 5,
+  },
+  row: { flexDirection: "row", justifyContent: "space-between" },
+  half: { width: "48%" },
+  input: {
+    width: "100%",
+    height: 50,
+    borderWidth: 1,
+    borderColor: "#DADADA",
+    borderRadius: 8,
+    paddingHorizontal: 15,
+    fontSize: 16,
+    marginTop: 12,
+  },
+  button: {
+    backgroundColor: "#1EB980",
+    height: 50,
+    borderRadius: 8,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
+  },
+  buttonDisabled: { backgroundColor: "#A3A3A3" },
+  buttonText: { color: "#FFF", fontSize: 16, fontWeight: "600" },
+  buttonContent: { flexDirection: "row", alignItems: "center", justifyContent: "center" },
+  OuContainer: { flexDirection: "row", alignItems: "center", justifyContent: "center", marginVertical: 20 },
+  line: { flex: 1, height: 1, backgroundColor: "#ccc" },
+  OuText: { marginHorizontal: 10, fontSize: 14, color: "#555", fontWeight: "500" },
+  footerText: { fontSize: 14, color: "#777" },
+  link: { color: "#1EB980", fontWeight: "600" },
+  socialButton: { backgroundColor: "#EAEAEA", paddingVertical: 12, paddingHorizontal: 25, borderRadius: 8 },
+  socialText: { fontWeight: "600", color: "#333" },
+});

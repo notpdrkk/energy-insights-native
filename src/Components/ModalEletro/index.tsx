@@ -7,9 +7,7 @@ import {
   ActivityIndicator,
   FlatList,
 } from "react-native";
-
 import { styles } from "./style";
-import { fetchAppliances } from "../../Apis/applianceApi/applianceApi";
 import { useAppliances } from "../../Context/EnergyContext";
 import { Appliance } from "../../types/appliance";
 
@@ -18,65 +16,49 @@ interface Props {
   onClose: () => void;
 }
 
-export default function ModalEletro({ visible, onClose }: Props) {
-  const [lista, setLista] = useState<Appliance[]>([]);
+export default function ModalProdutos({ visible, onClose }: Props) {
+  const { appliances, adicionar } = useAppliances();
   const [loading, setLoading] = useState(false);
 
-  const { adicionar } = useAppliances();
-
-  useEffect(() => {
-    if (visible) load();
-  }, [visible]);
-
-  const load = async () => {
-    try {
-      setLoading(true);
-
-      const data = await fetchAppliances(); 
-
-      
-      const formatado: Appliance[] = data.map((item) => ({
-        id: item.id,
-        nome: item.nome,
-        potencia: item.potencia,           
-        consumoMensal: item.consumoMensal, 
-      }));
-
-      setLista(formatado);
-    } catch (err) {
-      console.log("Erro API:", err);
-    } finally {
-      setLoading(false);
-    }
+  const handleAdd = (item: Appliance) => {
+    adicionar(item);
+    onClose();
   };
 
   return (
-    <Modal visible={visible} animationType="slide" transparent>
+    <Modal visible={visible} transparent animationType="fade">
       <View style={styles.overlay}>
         <View style={styles.modalBox}>
-          
-          <Text style={styles.title}>Eletrodomésticos</Text>
+          <Text style={styles.modalTitle}>Todos os Produtos</Text>
 
           {loading ? (
-            <ActivityIndicator size="large" />
+            <ActivityIndicator size="large" color="#0A84FF" style={{ marginTop: 20 }} />
           ) : (
             <FlatList
-              data={lista}
+              data={appliances}
               keyExtractor={(item) => item.id}
+              contentContainerStyle={{ paddingBottom: 20 }}
               renderItem={({ item }) => (
-                <View style={styles.item}>
-                  <Text style={styles.itemText}>
-                    {item.nome} — {item.consumoMensal} kWh/mês
-                  </Text>
+                <View style={styles.productCard}>
+                  <View style={{ flex: 1 }}>
+                    <Text style={styles.productName}>{item.nome}</Text>
+                    <Text style={styles.productInfo}>
+                      Potência: {item.potencia} W
+                    </Text>
+                    <Text style={styles.productInfo}>
+                      Consumo: {item.consumoMensal} kWh/mês
+                    </Text>
+                    {item.dicas ? (
+                      <Text style={styles.productTips}>💡 {item.dicas}</Text>
+                    ) : null}
+                  </View>
 
                   <TouchableOpacity
                     style={styles.addButton}
-                    onPress={() => {
-                      adicionar(item);
-                      onClose();
-                    }}
+                    onPress={() => handleAdd(item)}
+                    activeOpacity={0.7}
                   >
-                    <Text style={styles.addButtonText}>Adicionar</Text>
+                    <Text style={styles.addButtonText}>+</Text>
                   </TouchableOpacity>
                 </View>
               )}
@@ -86,7 +68,6 @@ export default function ModalEletro({ visible, onClose }: Props) {
           <TouchableOpacity style={styles.closeButton} onPress={onClose}>
             <Text style={styles.closeText}>Fechar</Text>
           </TouchableOpacity>
-
         </View>
       </View>
     </Modal>

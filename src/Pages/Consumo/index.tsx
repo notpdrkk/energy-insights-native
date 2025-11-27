@@ -17,17 +17,21 @@ export default function ConsumoScreen() {
   const [lista, setLista] = useState<ConsumoProps[]>([]);
   const [busca, setBusca] = useState("");
 
-  useEffect(() => { carregar(); }, []);
+  useEffect(() => {
+    carregar();
+  }, []);
 
   async function carregar() {
-    const { data } = await api.get("/consumos");
-
-    const addId = data.map((i: any, index: number) => ({
-      ...i,
-      id: String(index+1)
-    }));
-
-    setLista(addId);
+    try {
+      const { data } = await api.get("/consumos");
+      const addId = data.map((i: any, index: number) => ({
+        ...i,
+        id: String(index + 1),
+      }));
+      setLista(addId);
+    } catch (err) {
+      console.warn("Erro ao carregar consumos:", err);
+    }
   }
 
   return (
@@ -43,11 +47,12 @@ export default function ConsumoScreen() {
       />
 
       <FlatList
-        data={lista.filter(item => 
+        data={lista.filter(item =>
           item.name.toLowerCase().includes(busca.toLowerCase())
         )}
         keyExtractor={item => item.id}
-        renderItem={({ item }) => <CardConsumo {...item}/>} 
+        renderItem={({ item }) => <CardConsumo {...item} />}
+        contentContainerStyle={{ paddingBottom: 20 }}
       />
     </View>
   );

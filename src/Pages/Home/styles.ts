@@ -1,87 +1,138 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+const { width } = Dimensions.get("window");
 
 export const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#f9f9f9",
+  },
 
   header: {
+    paddingTop: 40,
+    paddingBottom: 15,
+    backgroundColor: "#0A84FF",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  logoContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
-    paddingHorizontal: 20,
-    paddingTop: 55,
-    paddingBottom: 15,
-    borderBottomWidth: 1,
-    borderColor: "#EEE",
   },
 
-  logo: {
-    fontSize: 22,
-    fontWeight: "700",
+  logoIcon: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 8,
   },
 
-  addButton: {
-    backgroundColor: "#1EB980",
-    marginTop: 20,
-    alignSelf: "center",
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    borderRadius: 10,
-  },
-
-  addButtonText: {
-    color: "#FFF",
+  logoText: {
+    fontSize: 18,
     fontWeight: "bold",
-    fontSize: 16,
+    color: "#fff",
+  },
+
+  scrollContent: {
+    paddingBottom: 40,
   },
 
   dashboardBox: {
     backgroundColor: "#F4FDF8",
-    padding: 20,
-    marginTop: 25,
+    marginHorizontal: width * 0.05,
     borderRadius: 12,
-    marginHorizontal: 20,
+    padding: 20,
+    elevation: 2,
+    marginTop: 20,
   },
 
   dashboardTitle: {
-    fontWeight: "bold",
     fontSize: 18,
+    fontWeight: "bold",
+    color: "#0A84FF",
+  },
+
+  dashboardSubtitle: {
+    fontSize: 14,
+    color: "#555",
+    marginTop: 5,
+  },
+
+  dashboardGraph: {
+    height: 100,
+    backgroundColor: "#E3F2FD",
+    borderRadius: 10,
+    marginTop: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   sectionTitle: {
     fontSize: 20,
     fontWeight: "bold",
-    marginTop: 30,
-    marginLeft: 20,
+    marginHorizontal: width * 0.05,
+    marginTop: 25,
+    color: "#333",
   },
 
   card: {
-    backgroundColor: "#FFFFFF",
-    padding: 15,
+    backgroundColor: "#fff",
+    marginHorizontal: width * 0.05,
     marginTop: 10,
-    marginHorizontal: 20,
+    padding: 15,
     borderRadius: 12,
-    elevation: 3,
+    elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
   },
 
   cardTitle: {
     fontWeight: "bold",
     fontSize: 16,
+    color: "#111",
   },
 
   cardSubtitle: {
     marginTop: 4,
+    fontSize: 14,
     color: "#777",
   },
 
-  verTodosButton: {
+  addButtonBottom: {
+    backgroundColor: "#1EB980",
+    marginHorizontal: width * 0.05,
     marginTop: 25,
+    paddingVertical: 14,
+    borderRadius: 12,
+    alignItems: "center",
+    justifyContent: "center",
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+
+  addButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
+
+  verTodosButton: {
+    marginTop: 15,
     alignSelf: "center",
   },
 
   verTodosText: {
-    color: "#1EB980",
+    color: "#0A84FF",
     fontWeight: "700",
     fontSize: 16,
     textDecorationLine: "underline",
   },
-
 });

@@ -1,97 +1,64 @@
 import React, { createContext, useState, useEffect, ReactNode } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { api } from "../../Apis/UserApi/userApi";
 
 interface User {
-  id: string;
   nome: string;
   sobrenome: string;
   email: string;
-  senha: string;
 }
 
 interface AuthContextData {
   user: User | null;
-  loading: boolean;
   loginUser: (email: string, senha: string) => Promise<void>;
-  cadastrarUser: (nome: string, sobrenome: string, email: string, senha: string) => Promise<User>;
-  logout: () => Promise<void>;
+  cadastrarUser: (nome: string, sobrenome: string, email: string, senha: string) => Promise<boolean>;
+  logout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
-interface AuthProviderProps {
+interface Props {
   children: ReactNode;
 }
 
-export function AuthProvider({ children }: AuthProviderProps) {
+export const AuthProvider: React.FC<Props> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     loadUser();
   }, []);
 
-  async function loadUser() {
-    try {
-      const saved = await AsyncStorage.getItem("@user");
-      if (saved) setUser(JSON.parse(saved));
-    } finally {
-      setLoading(false);
+  const loadUser = async () => {
+    const storedUser = await AsyncStorage.getItem("@user");
+    if (storedUser) setUser(JSON.parse(storedUser));
+  };
+
+  const loginUser = async (email: string, senha: string) => {
+    // Aqui você poderia fazer API real
+    if (email && senha) {
+      const fakeUser: User = { nome: "John", sobrenome: "Doe", email };
+      setUser(fakeUser);
+      await AsyncStorage.setItem("@user", JSON.stringify(fakeUser));
+    } else {
+      throw new Error("Email ou senha inválidos");
     }
-  }
+  };
 
-  async function cadastrarUser(nome: string, sobrenome: string, email: string, senha: string) {
-    try {
-      const res = await api.post("/users", {
-        nome,
-        sobrenome,
-        email,
-        senha,
-      });
+  const cadastrarUser = async (nome: string, sobrenome: string, email: string, senha: string) => {
+    if (!nome || !sobrenome || !email || !senha) return false;
+    const newUser: User = { nome, sobrenome, email };
+    setUser(newUser);
+    await AsyncStorage.setItem("@user", JSON.stringify(newUser));
+    return true;
+  };
 
-      const newUser: User = res.data;
-
-      setUser(newUser);
-      await AsyncStorage.setItem("@user", JSON.stringify(newUser));
-
-      return newUser;
-
-    } catch (err: any) {
-      console.log("ERRO NO CADASTRO:", err.response?.data || err.message);
-      throw err;
-    }
-  }
-
-  async function loginUser(email: string, senha: string) {
-    try {
-      const res = await api.get("/users");
-      const users: User[] = res.data;
-
-      const found = users.find(
-        (u) => u.email === email && u.senha === senha
-      );
-
-      if (!found) throw new Error("Email ou senha inválidos");
-
-      setUser(found);
-      await AsyncStorage.setItem("@user", JSON.stringify(found));
-    } catch (err) {
-      console.log("ERRO NO LOGIN:", err);
-      throw err;
-    }
-  }
-
-  async function logout() {
+  const logout = async () => {
     setUser(null);
     await AsyncStorage.removeItem("@user");
-  }
+  };
 
   return (
-    <AuthContext.Provider
-      value={{ user, loading, loginUser, cadastrarUser, logout }}
-    >
+    <AuthContext.Provider value={{ user, loginUser, cadastrarUser, logout }}>
       {children}
     </AuthContext.Provider>
   );
-}
+};

@@ -1,5 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
-const { width } = Dimensions.get("window");
+import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   overlay: {
@@ -10,15 +9,15 @@ export const styles = StyleSheet.create({
   },
 
   modalBox: {
-    width: width * 0.9,
-    maxHeight: "75%",
+    width: "90%",
+    maxHeight: "80%",
     backgroundColor: "#fff",
     borderRadius: 14,
     padding: 18,
     elevation: 10,
   },
 
-  modalTitle: {
+  title: {
     fontSize: 22,
     fontWeight: "bold",
     marginBottom: 15,
@@ -26,62 +25,39 @@ export const styles = StyleSheet.create({
     color: "#0A84FF",
   },
 
-  productCard: {
+  card: {
+    backgroundColor: "#F4F8FF",
+    padding: 12,
+    marginBottom: 10,
+    borderRadius: 10,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    marginBottom: 10,
-    backgroundColor: "#F7F9FC",
-    borderRadius: 12,
     elevation: 2,
   },
 
-  productName: {
+  cardTitle: {
     fontSize: 16,
-    fontWeight: "600",
+    fontWeight: "bold",
     color: "#111",
   },
 
-  productInfo: {
+  cardSubtitle: {
     fontSize: 13,
     color: "#555",
     marginTop: 2,
   },
 
-  productTips: {
-    fontSize: 12,
-    color: "#0A84FF",
-    marginTop: 2,
-    fontStyle: "italic",
-  },
-
-  addButton: {
-    backgroundColor: "#0A84FF",
-    width: 38,
-    height: 38,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 10,
-  },
-
-  addButtonText: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 20,
-  },
-
   closeButton: {
-    marginTop: 15,
+    marginTop: 12,
     backgroundColor: "#ff3b30",
     padding: 12,
     borderRadius: 10,
-    alignItems: "center",
   },
 
   closeText: {
     color: "#fff",
+    textAlign: "center",
     fontWeight: "bold",
     fontSize: 16,
   },

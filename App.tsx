@@ -1,14 +1,14 @@
 import React from "react";
 import { AuthProvider } from "./src/Context/AuthContext";
-import { ApplianceProvider } from "./src/Context/EnergyContext"; 
+import { EnergyProvider } from "./src/Context/EnergyContext"; 
 import { AppNavigator } from "./src/Navigation/AppNavigator";
 
 export default function App() {
   return (
     <AuthProvider>
-      <ApplianceProvider>   
+      <EnergyProvider> 
         <AppNavigator />
-      </ApplianceProvider>
+      </EnergyProvider>
     </AuthProvider>
   );
 }

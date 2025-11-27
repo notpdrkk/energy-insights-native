@@ -1,42 +1,28 @@
-import React, { useEffect, useState } from "react";
 import { View, Text, FlatList } from "react-native";
-import { styles } from "./style";
-import { api } from "../../Apis/UserApi/userApi";
-import CardConsumo from "../../Components/CardConsumo";
+import { useAppliances } from "../../Context/EnergyContext";
+import { styles } from "./style"; 
 
-interface ConsumoProps {
-  id: string;
-  name: string;
-  category: string;
-  watts: number;
-  kwh_month: number;
-  icon: string;
-}
-
-export default function RankingScreen() {
-  const [lista, setLista] = useState<ConsumoProps[]>([]);
-
-  useEffect(() => { carregar(); }, []);
-
-  async function carregar() {
-    const { data } = await api.get("/consumos");
-
-    const comId: ConsumoProps[] = data.map((i: any, index: number) => ({
-      ...i,
-      id: String(index+1) 
-    }));
-
-    setLista(comId.sort((a, b) => b.kwh_month - a.kwh_month));
-  }
+export default function Ranking() {
+  const { appliances } = useAppliances();
+  const sorted = [...appliances].sort((a, b) => b.consumoMensal - a.consumoMensal);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Ranking de Consumo (kWh/mês)</Text>
+      <Text style={styles.title}>Ranking de Consumo</Text>
 
       <FlatList
-        data={lista}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <CardConsumo {...item}/> } 
+        data={sorted}
+        keyExtractor={item => item.id}
+        renderItem={({ item, index }) => (
+          <View style={styles.card}>
+            <Text style={styles.cardTitle}>
+              {index + 1}° • {item.nome}
+            </Text>
+            <Text>Potência: {item.potencia} W</Text>
+            <Text>Consumo: {item.consumoMensal} kWh/mês</Text>
+          </View>
+        )}
+        contentContainerStyle={{ paddingBottom: 20 }}
       />
     </View>
   );
