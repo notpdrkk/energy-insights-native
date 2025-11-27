@@ -2,87 +2,54 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#0f1724", 
+    width: "92%",
+    alignSelf: "center",
+    backgroundColor: "#ffffff",
+    borderRadius: 14,
     padding: 14,
-    marginBottom: 12,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.06)",
-  },
-  cardTitle: {
-    fontSize: 16,
-    color: "#ffffff",
-    fontWeight: "700",
-    marginBottom: 8,
-  },
-  row: {
+    marginBottom: 10,
     flexDirection: "row",
-    justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 8,
-  },
-  label: {
-    fontSize: 13,
-    color: "#cbd5e1", 
-  },
-  value: {
-    fontSize: 13,
-    color: "#e6eef8",
-    fontWeight: "600",
-  },
-  cost: {
-    fontSize: 13,
-    color: "#f59e0b", 
-    fontWeight: "700",
-  },
-  buttons: {
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    gap: 12, 
-    marginTop: 10,
-  },
-  btnEdit: {
-    fontSize: 13,
-    color: "#60a5fa", 
-    fontWeight: "700",
-    marginRight: 12,
-  },
-  btnDelete: {
-    fontSize: 13,
-    color: "#fb7185", 
+    elevation: 3, // sombra Android
+    shadowColor: "#000", // sombra iOS
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.13,
+    shadowRadius: 4,
   },
 
-  container: {
-    flex: 1,
-    padding: 16,
-    backgroundColor: "#071025",
-  },
-  title: {
+  rank: {
     fontSize: 20,
-    color: "#fff",
-    fontWeight: "700",
-    marginBottom: 12,
+    fontWeight: "bold",
+    color: "#6C47FF",   // cor destaque
+    marginRight: 15,
+    width: 35,
+    textAlign: "center",
   },
 
+  infoBox: {
+    flex: 1,
+  },
 
-  input: {
-    width: "100%",
-    padding: 10,
-    borderRadius: 8,
-    backgroundColor: "#0b1220",
-    color: "#fff",
-    marginBottom: 8,
+  name: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: "#222",
   },
-  button: {
-    backgroundColor: "#06b6d4",
-    paddingVertical: 12,
-    paddingHorizontal: 16,
-    borderRadius: 8,
-    alignItems: "center",
-    marginTop: 8,
+
+  category: {
+    fontSize: 14,
+    color: "#666",
+    marginBottom: 3,
   },
-  buttonText: {
-    color: "#002026",
-    fontWeight: "700",
+
+  details: {
+    fontSize: 13,
+    fontWeight: "500",
+    color: "#333",
   },
+
+  emoji: {
+    fontSize: 28,
+    marginLeft: 10,
+  }
 });

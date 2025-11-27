@@ -1,58 +1,28 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
-import { styles } from "./style"; 
+import { View, Text, Image } from "react-native";
+import { styles } from "./style";
 
 export interface CardProps {
-  id: string;
   name: string;
-  watts?: number;
-  kwh_month?: number;
-  kwh_daily?: string | number;
-  onDelete?: (id: string) => void;
-  onEdit?: () => void;
+  category: string;
+  watts: number;
+  kwh_month: number;
+  icon: string;
+  rank: number;
 }
 
-export default function CardConsumo({
-  id,
-  name,
-  watts,
-  kwh_month,
-  kwh_daily,
-  onDelete,
-  onEdit
-}: CardProps) {
-
+export default function CardConsumo({ name, category, watts, kwh_month, icon, rank }: CardProps) {
   return (
     <View style={styles.card}>
-      <Text style={styles.cardTitle}>{name}</Text>
+      <Text style={styles.rank}>#{rank}</Text>
 
-      {watts !== undefined && (
-        <View style={styles.row}>
-          <Text style={styles.label}>Potência:</Text>
-          <Text style={styles.value}>{watts} W</Text>
-        </View>
-      )}
+      <View style={styles.infoBox}>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.category}>{category}</Text>
+        <Text style={styles.details}>{watts}W • {kwh_month} kWh/mês</Text>
+      </View>
 
-      {kwh_month !== undefined && (
-        <View style={styles.row}>
-          <Text style={styles.label}>Consumo mensal:</Text>
-          <Text style={styles.value}>{kwh_month.toFixed(2)} kWh</Text>
-        </View>
-      )}
-
-      {kwh_daily && (
-        <View style={styles.row}>
-          <Text style={styles.label}>Consumo diário:</Text>
-          <Text style={styles.value}>{kwh_daily} kWh/dia</Text>
-        </View>
-      )}
-
-      {(onEdit || onDelete) && (
-        <View style={styles.buttons}>
-          {onEdit && <TouchableOpacity onPress={onEdit}><Text style={styles.btnEdit}>Editar</Text></TouchableOpacity>}
-          {onDelete && <TouchableOpacity onPress={() => onDelete(id)}><Text style={styles.btnDelete}>Excluir</Text></TouchableOpacity>}
-        </View>
-      )}
+      <Text style={styles.emoji}>{icon}</Text>
     </View>
   );
 }
